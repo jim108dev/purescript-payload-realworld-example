@@ -25,13 +25,13 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 
 1. Database Setup:
    1. Install PostgreSQL.
-   1. Set up a database called `conduit`. An example script can be found under [sql/CreateDB.sql](./sql/CreateDB.sql). Change [config/Server/Dev.json](./config/Server/Dev.json) accordingly.
+   1. Set up a database called `conduit` with [sql/CreateDB.sql](./sql/CreateDB.sql). Change [config/Server/Dev.json](./config/Server/Dev.json) accordingly, if you make alterations.
    1. Install the database function `timestamp_to_char` under [sql/Functions.sql](./sql/Functions.sql), either the production or mock version in order to run the tests.
    1. Create tables with
 
     ```sh
     spago run -m Test.ResetTables
-    # or for tables with test data
+    # or for tables with test data run the tests
     spago run -m Test.Main
     ```
 
