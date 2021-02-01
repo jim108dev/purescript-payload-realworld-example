@@ -1,7 +1,0 @@
-*.swp
-bower_components/
-node_modules/
-output/
-npm-debug.log
-.spago/
-.psci_modules/
