@@ -54,17 +54,18 @@ This file contains some comments about the decisions which were made.
 1. PureScript Payload:
    1. The `Failure` type did not fit for CORS, because it requires a custom header with every request.
    1. Payload does not output validation errors. In order to see them, Payload was patched. (Compare <https://github.com/hoodunit/purescript-payload/compare/master...jim108dev:master>)
-   1. Payload did not support post requests with an empty body. This as also be patched.
+   1. Payload did not support post requests with an empty body. This was also be patched.
 1. Validation:
-   1. [purescript-simple-json](https://github.com/justinwoo/purescript-simple-json) is used for JSON encoding/decoding because it doesn't require to specify the order of fields. Because the error field dynamic the error structure is rendered with simple string concatenation [src/Server/Shared/Api/Main.purs](./src/Server/Shared/Api/Main.purs). This could be improved.
+   1. [purescript-simple-json](https://github.com/justinwoo/purescript-simple-json) is used for JSON encoding/decoding because it doesn't require to specify the order of fields. Because the error field is dynamic the error structure is rendered with simple string concatenation (see [src/Server/Shared/Api/Main.purs](./src/Server/Shared/Api/Main.purs)). This could be improved.
    1. Strings are represented by:
       1. `LongString`: Between 1 and 1000 characters. The database type is unrestricted (`TEXT`).
-      1. `LowercaseString`: Forces strings to be lowercase, e.g. for tags. The database type id unrestricted and case-insensitive (`CITEXT`).
+      1. `LowercaseString`: Forces strings to be lowercase, e.g. for tags. The database type is unrestricted and case-insensitive (`CITEXT`).
       1. `ShortString`: Between 1 and 50 characters. The database type is unrestricted (`TEXT`).
-   1. All simple types like `UserId` are coded with `type` instead of `newtype` in order to safe on boilerplate code.
+   1. In order to safe on boilerplate code, all simple types like `UserId` are coded with `type` instead of `newtype`.
 1. Security:
    1. [purescript-simple-jwt](https://github.com/oreshinya/purescript-simple-jwt) is used for token encoding/decoding. Only a secret key and the userId are used. There is no token expiration date. This could be improved.
 1. Tests:
-   1. Setting `origin` in the tests was not possible (Error message: `Refused to set unsafe header "origin"`). The test case request and response bodies can be found under `test/Server/<domain>/<file>`. This way they can be used via *HTTPie* and with automated testing.
+   1. Setting `origin` in the tests was not possible (Error message: `Refused to set unsafe header "origin"`). I had to mock the function.
+   1. The test case request and response bodies can be found under `test/Server/<domain>/<file>`. This way they can be used via *HTTPie* and with automated testing.
 1. Frontend:
    1. [purescript-halogen-realword](https://github.com/thomashoneyman/purescript-halogen-realworld) did not work for update user and post comments. See <https://github.com/thomashoneyman/purescript-halogen-realworld/issues/78>.
