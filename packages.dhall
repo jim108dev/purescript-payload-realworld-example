@@ -136,4 +136,4 @@ let additions =
 in      upstream
     //  overrides
     //  additions
-{-  with payload = ../purescript-payload/spago.dhall as Location-}
+  with payload = ../purescript-payload/spago.dhall as Location
