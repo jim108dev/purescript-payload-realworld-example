@@ -10,13 +10,15 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 
 1. Install repository 's software:
 
-    1. Clone the patched version of payload from <https://github.com/jim108dev/purescript-payload.git>
-    1. Clone this repository.
-
     1. Run:
 
     ```sh
-    npm install
+    # Clone the patched version of payload
+    git clone https://github.com/jim108dev/purescript-payload.git
+    # This repo
+    git clone https://github.com/jim108dev/purescript-payload-realworld-example.git
+    cd purescript-payload-realworld-example
+    npm install pg decimal.js xhr2
     spago install
     spago build
     ```
@@ -24,9 +26,14 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 1. Database Setup:
    1. Install PostgreSQL.
    1. Set up a database called `conduit`. An example script can be found under [sql/CreateDB.sql](./sql/CreateDB.sql). Change [config/Server/Dev.json](./config/Server/Dev.json) accordingly.
-   1. Install Database function `timestamp_to_char` under [sql/Functions.sql](./sql/Functions.sql), either the production or mock version for unit tests.
-   1. Run `spago run -m Test.ResetTables` creating empty tables.
-   1. Run `Function or`spago run -m Test.Main` for table creation with unit test data.
+   1. Install the database function `timestamp_to_char` under [sql/Functions.sql](./sql/Functions.sql), either the production or mock version in order to run the tests.
+   1. Create tables with
+
+    ```sh
+    spago run -m Test.ResetTables
+    # or for tables with test data
+    spago run -m Test.Main
+    ```
 
 1. Optional: Install [HTTPie](https://httpie.io) for testing via command line.
 
