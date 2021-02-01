@@ -46,9 +46,9 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 
 1. Run the server:
 
-```sh
-spago run 
-```
+    ```sh
+    spago run 
+    ```
 
 1. [API-SPEC.md](./API-SPEC.md) lists HTTPie test calls to every request.
 
