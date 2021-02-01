@@ -2,7 +2,7 @@
 
 This is a learning project in order to set up a REST API with [PureScript Payload](https://github.com/hoodunit/purescript-payload) and [PostgreSQL](https://www.postgresql.org). The specification follows
 
-- [API Spec](https://github.com/gothinkster/realworld/tree/master/api)
+- [RealWorld API Spec](https://github.com/gothinkster/realworld/tree/master/api)
 
 ## Install
 
