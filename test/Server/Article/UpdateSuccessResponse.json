@@ -1,0 +1,23 @@
+{
+    "article": {
+        "updatedAt": "2016-02-18T03:22:56.637Z",
+        "title": "Did you train your dragon?",
+        "tagList": [
+            "reactjs",
+            "angularjs",
+            "dragons"
+        ],
+        "slug": "did-you-train-your-dragon",
+        "favoritesCount": 0,
+        "favorited": false,
+        "description": "Ever wonder how?",
+        "createdAt": "2016-02-18T03:22:56.637Z",
+        "body": "You have to believe",
+        "author": {
+            "username": "jake",
+            "image": null,
+            "following": false,
+            "bio": "I work at statefarm"
+        }
+    }
+}

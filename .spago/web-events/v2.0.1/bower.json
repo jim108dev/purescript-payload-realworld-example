@@ -1,0 +1,22 @@
+{
+  "name": "purescript-web-events",
+  "homepage": "https://github.com/purescript-web/purescript-web-events",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript-web/purescript-web-events.git"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "output",
+    "bower.json",
+    "package.json"
+  ],
+  "dependencies": {
+    "purescript-datetime": "^4.0.0",
+    "purescript-enums": "^4.0.0",
+    "purescript-nullable": "^4.0.0"
+  }
+}

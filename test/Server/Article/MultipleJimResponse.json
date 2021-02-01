@@ -1,0 +1,24 @@
+{
+    "articlesCount": 1,
+    "articles": [
+        {
+            "updatedAt": "2016-02-18T03:22:56.637Z",
+            "title": "Alt",
+            "tagList": [
+                "alt"
+            ],
+            "slug": "alt",
+            "favoritesCount": 0,
+            "favorited": false,
+            "description": "how?",
+            "createdAt": "2016-02-18T03:22:56.637Z",
+            "body": "go",
+            "author": {
+                "username": "jim",
+                "following": false,
+                "bio": "I work at statefarm",
+                "image": null
+            }
+        }
+    ]
+}

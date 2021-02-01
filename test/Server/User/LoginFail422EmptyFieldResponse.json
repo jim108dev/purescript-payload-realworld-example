@@ -1,0 +1,10 @@
+{
+    "errors": {
+        "email": [
+            "can't be empty"
+        ],
+        "password": [
+            "can't be empty"
+        ]
+    }
+}

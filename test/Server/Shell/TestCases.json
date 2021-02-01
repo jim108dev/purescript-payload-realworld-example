@@ -1,0 +1,436 @@
+[
+    {
+        "description": "Register jake",
+        "domain": "User",
+        "request": {
+            "path": "/api/users",
+            "method": "post",
+            "bodyFilename": "RegisterSuccessRequest.json"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "RequestSuccessResponse.json"
+        }
+    },
+    {
+        "domain": "User",
+        "request": {
+            "path": "/api/users/login",
+            "method": "post",
+            "bodyFilename": "LoginSuccessRequest.json"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "RequestSuccessResponse.json"
+        }
+    },
+    {
+        "domain": "User",
+        "request": {
+            "path": "/api/users/login",
+            "method": "post",
+            "bodyFilename": "LoginFail404Request.json"
+        },
+        "response": {
+            "status": 404,
+            "bodyFilename": "LoginFail404Response.json"
+        }
+    },
+    {
+        "domain": "User",
+        "request": {
+            "path": "/api/users/login",
+            "method": "post",
+            "bodyFilename": "LoginFail422EmptyFieldRequest.json"
+        },
+        "response": {
+            "status": 422,
+            "bodyFilename": "LoginFail422EmptyFieldResponse.json"
+        }
+    },
+    {
+        "domain": "User",
+        "request": {
+            "path": "/api/users/login",
+            "method": "post",
+            "bodyFilename": "LoginFail422MissingFieldRequest.json"
+        },
+        "response": {
+            "status": 422,
+            "bodyFilename": "LoginFail422MissingFieldResponse.json"
+        }
+    },
+    {
+        "domain": "User",
+        "request": {
+            "path": "/api/user",
+            "method": "get",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "RequestSuccessResponse.json"
+        }
+    },
+    {
+        "domain": "User",
+        "request": {
+            "path": "/api/user",
+            "method": "put",
+            "bodyFilename": "UpdateSuccessRequest.json",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "RequestJimSuccessResponse.json"
+        }
+    },
+    {
+        "description": "Reverse update",
+        "domain": "User",
+        "request": {
+            "path": "/api/user",
+            "method": "put",
+            "bodyFilename": "UpdateBackSuccessRequest.json",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "domain": "User",
+        "description": "Register jim",
+        "request": {
+            "path": "/api/users",
+            "method": "post",
+            "bodyFilename": "RegisterJimSuccessRequest.json"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "domain": "Profile",
+        "request": {
+            "path": "/api/profiles/jim",
+            "method": "get"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "GetSuccessResponse.json"
+        }
+    },
+    {
+        "description": "shows an unfollowed profile",
+        "domain": "Profile",
+        "request": {
+            "path": "/api/profiles/jim",
+            "method": "get"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "GetSuccessResponse.json"
+        }
+    },
+    {
+        "description": "fails because nobody does not exist",
+        "domain": "Profile",
+        "request": {
+            "path": "/api/profiles/nobody",
+            "method": "get"
+        },
+        "response": {
+            "status": 404,
+            "bodyFilename": "RequestFail404Response.json"
+        }
+    },
+    {
+        "description": "follows jim",
+        "domain": "Profile",
+        "request": {
+            "path": "/api/profiles/jim/follow",
+            "method": "post",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "FollowSuccessResponse.json"
+        }
+    },
+    {
+        "description": "fails because of follower=followee",
+        "domain": "Profile",
+        "request": {
+            "path": "/api/profiles/jake/follow",
+            "method": "post",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 422,
+            "bodyFilename": "FollowFail422Response.json"
+        }
+    },
+    {
+        "description": "unfollows jim",
+        "domain": "Profile",
+        "request": {
+            "path": "/api/profiles/jim/follow",
+            "method": "delete",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "UnfollowSuccessResponse.json"
+        }
+    },
+    {
+        "description": "jake posts",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles",
+            "method": "post",
+            "bodyFilename": "CreateSuccessRequest.json",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "SingleResponse.json"
+        }
+    },
+    {
+        "description": "jim posts",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles",
+            "method": "post",
+            "bodyFilename": "CreateJimSuccessRequest.json",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Mg.7RxL2KQqrKhnKrqrHMYDh5Iao0vQ1Ewp4KetoK-BH2o"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "description": "find 1 article from jim and jake each",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles",
+            "method": "get"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "Multiple2Response.json"
+        }
+    },
+    {
+        "description": "find 1 article from jake",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles?tag=AngularJS",
+            "method": "get"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "MultipleJakeResponse.json"
+        }
+    },
+    {
+        "description": "find 1 article from jim",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles?author=jim",
+            "method": "get"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "MultipleJimResponse.json"
+        }
+    },
+    {
+        "description": "get 0 new feeds because of no following",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles/feed",
+            "method": "get",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "Multiple0Response.json"
+        }
+    },
+    {
+        "description": "follows jim for next test",
+        "domain": "Profile",
+        "request": {
+            "path": "/api/profiles/jim/follow",
+            "method": "post",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "description": "get 1 new feeds because of following jim",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles/feed",
+            "method": "get",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "MultipleJimFollowingResponse.json"
+        }
+    },
+    {
+        "description": "reverts following",
+        "domain": "Profile",
+        "request": {
+            "path": "/api/profiles/jim/follow",
+            "method": "delete",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "description": "favor jim's article for next test",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles/alt/favorite",
+            "method": "post",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "description": "1 article from jim",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles?favorited=jake",
+            "method": "get"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "MultipleJimFavoritedResponse.json"
+        }
+    },
+    {
+        "description": "unfavor jim's article for next test",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles/alt/favorite",
+            "method": "delete",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "description": "0 articles favored",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles?favorited=jake",
+            "method": "get"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "Multiple0Response.json"
+        }
+    },
+    {
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles/how-to-train-your-dragon",
+            "method": "put",
+            "bodyFilename": "UpdateSuccessRequest.json",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "UpdateSuccessResponse.json"
+        }
+    },
+    {
+        "description": "reverses update",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles/did-you-train-your-dragon",
+            "method": "put",
+            "bodyFilename": "UpdateBackSuccessRequest.json",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "description": "gets the tags",
+        "domain": "Article",
+        "request": {
+            "path": "/api/tags",
+            "method": "get"
+        },
+        "response": {
+            "bodyFilename": "TagsResponse.json",
+            "status": 200
+        }
+    },
+    {
+        "description": "Delete jim's article",
+        "domain": "Article",
+        "request": {
+            "path": "/api/articles/alt",
+            "method": "delete",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Mg.7RxL2KQqrKhnKrqrHMYDh5Iao0vQ1Ewp4KetoK-BH2o"
+        },
+        "response": {
+            "status": 200
+        }
+    },
+    {
+        "description": "1 comment",
+        "domain": "Comment",
+        "request": {
+            "path": "/api/articles/how-to-train-your-dragon/comments",
+            "method": "post",
+            "bodyFilename": "CreateSuccessRequest.json",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "SingleResponse.json"
+        }
+    },
+    {
+        "description": "Show created comment",
+        "domain": "Comment",
+        "request": {
+            "path": "/api/articles/how-to-train-your-dragon/comments",
+            "method": "get",
+            "bodyFilename": "CreateSuccessRequest.json"
+        },
+        "response": {
+            "status": 200,
+            "bodyFilename": "MultipleResponse.json"
+        }
+    },
+    {
+        "domain": "Comment",
+        "request": {
+            "path": "/api/articles/how-to-train-your-dragon/comments/1",
+            "method": "delete",
+            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+        },
+        "response": {
+            "status": 200
+        }
+    }
+]

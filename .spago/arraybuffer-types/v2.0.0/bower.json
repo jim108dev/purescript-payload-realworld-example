@@ -1,0 +1,22 @@
+{
+  "name": "purescript-arraybuffer-types",
+  "homepage": "https://github.com/purescript-contrib/purescript-arraybuffer-types",
+  "description": "PureScript type definitions for JavaScript ArrayBuffers",
+  "keywords": [
+    "purescript"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript-contrib/purescript-arraybuffer-types.git"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "output",
+    "bower.json",
+    "gulpfile.js",
+    "package.json"
+  ]
+}

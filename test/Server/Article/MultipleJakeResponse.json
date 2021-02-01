@@ -1,0 +1,26 @@
+{
+    "articlesCount": 1,
+    "articles": [
+        {
+            "updatedAt": "2016-02-18T03:22:56.637Z",
+            "title": "How to train your dragon",
+            "tagList": [
+                "reactjs",
+                "angularjs",
+                "dragons"
+            ],
+            "slug": "how-to-train-your-dragon",
+            "favoritesCount": 0,
+            "favorited": false,
+            "description": "Ever wonder how?",
+            "createdAt": "2016-02-18T03:22:56.637Z",
+            "body": "You have to believe",
+            "author": {
+                "username": "jake",
+                "following": false,
+                "bio": "I work at statefarm",
+                "image": null
+            }
+        }
+    ]
+}

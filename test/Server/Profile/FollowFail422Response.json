@@ -1,0 +1,7 @@
+{
+    "errors": {
+        "message": [
+            "follower must be different from followee"
+        ]
+    }
+}

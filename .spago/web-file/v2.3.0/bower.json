@@ -1,0 +1,22 @@
+{
+  "name": "purescript-web-file",
+  "homepage": "https://github.com/purescript-web/purescript-web-file",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript-web/purescript-web-file.git"
+  },
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "node_modules",
+    "output",
+    "bower.json",
+    "package.json"
+  ],
+  "dependencies": {
+    "purescript-foreign": "5",
+    "purescript-media-types": "4",
+    "purescript-web-dom": "2 - 4"
+  }
+}

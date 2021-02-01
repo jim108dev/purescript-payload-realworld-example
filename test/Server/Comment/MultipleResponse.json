@@ -1,0 +1,15 @@
+{
+    "comments": [
+        {
+            "updatedAt": "2016-02-18T03:22:56.637Z",
+            "id": 1,
+            "createdAt": "2016-02-18T03:22:56.637Z",
+            "body": "His name was my name too.",
+            "author": {
+                "username": "jake",
+                "following": false,
+                "bio": "I work at statefarm"
+            }
+        }
+    ]
+}

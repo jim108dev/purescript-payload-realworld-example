@@ -1,0 +1,24 @@
+{
+  "name": "purescript-record-extra",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/justinwoo/purescript-record-extra.git"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-typelevel-prelude": ">=4.0.0 <6.0.0",
+    "purescript-record": "^2.0.0",
+    "purescript-functions": "^4.0.0",
+    "purescript-lists": "^5.0.0",
+    "purescript-arrays": "^5.2.0"
+  },
+  "devDependencies": {
+    "purescript-test-unit": "^15.0.0"
+  }
+}

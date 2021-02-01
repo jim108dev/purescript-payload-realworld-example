@@ -1,0 +1,17 @@
+{
+    "server": {
+        "port": 3000,
+        "hostname": "localhost",
+        "logLevel": "Debug"
+    },
+    "persistence": {
+        "hostname": "localhost",
+        "database": "conduit",
+        "user": "a",
+        "password": "password",
+        "impl": "Postgres"
+    },
+    "token": {
+        "secret": "secret"
+    }
+}

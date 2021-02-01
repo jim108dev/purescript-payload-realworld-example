@@ -1,0 +1,17 @@
+{
+  "name": "purescript-node-url",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/purescript-node/purescript-node-url.git"
+  },
+  "dependencies": {
+    "purescript-nullable": "^4.0.0"
+  }
+}

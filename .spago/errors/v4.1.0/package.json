@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "pulp test && rimraf docs && pulp docs"
+  },
+  "license": "Apache-2",
+  "devDependencies": {
+    "pulp": "^12.0.0",
+    "rimraf": "^2.5.4",
+    "purescript": "0.12.3"
+  }
+}
