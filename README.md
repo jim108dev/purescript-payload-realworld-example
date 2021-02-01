@@ -10,7 +10,8 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 
 1. Install repository 's software:
 
-    1. Clone the repository
+    1. Clone the patched version of payload from <https://github.com/jim108dev/purescript-payload.git>
+    1. Clone this repository.
 
     1. Run:
 
