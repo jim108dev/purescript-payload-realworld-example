@@ -1,4 +1,4 @@
-# Purescript Payload RealWorld Example
+# PureScript Payload RealWorld Example
 
 This is a learning project in order to set up a REST API with [PureScript Payload](https://github.com/hoodunit/purescript-payload) and [PostgreSQL](https://www.postgresql.org). The specification follows
 
