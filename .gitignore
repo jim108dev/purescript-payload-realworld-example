@@ -7,7 +7,7 @@ node_modules
 .psci
 output
 /.pulp-cache/
-/output/
+#/output/
 /generated-docs/
 /.psc-package/
 /.psc*
