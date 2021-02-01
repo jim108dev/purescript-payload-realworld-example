@@ -35,6 +35,9 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
     spago run -m Test.Main
     ```
 
+1. Jwt:
+   Change the token's secret key in [config/Server/Dev.json](./config/Server/Dev.json). (In order to run the automated tests, `secret` must be kept in place.)
+
 1. Optional: Install [HTTPie](https://httpie.io) for testing via command line.
 
 1. Optional: Install a frontend like [Real World Halogen](<https://github.com/thomashoneyman/purescript-halogen-realworld>).
