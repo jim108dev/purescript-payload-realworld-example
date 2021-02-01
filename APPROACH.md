@@ -66,3 +66,5 @@ This file contains some comments about the decisions which were made.
    1. [purescript-simple-jwt](https://github.com/oreshinya/purescript-simple-jwt) is used for token encoding/decoding. Only a secret key and the userId are used. There is no token expiration date. This could be improved.
 1. Tests:
    1. Setting `origin` in the tests was not possible (Error message: `Refused to set unsafe header "origin"`). The test case request and response bodies can be found under `test/Server/<domain>/<file>`. This way they can be used via *HTTPie* and with automated testing.
+1. Frontend:
+   1. [purescript-halogen-realword](https://github.com/thomashoneyman/purescript-halogen-realworld) did not work for update user and post comments. See <https://github.com/thomashoneyman/purescript-halogen-realworld/issues/78>.
