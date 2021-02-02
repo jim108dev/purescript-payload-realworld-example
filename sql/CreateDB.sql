@@ -1,15 +1,15 @@
-DROP DATABASE IF EXISTS conduit_database;
+DROP DATABASE IF EXISTS conduit;
 
-CREATE DATABASE conduit_database;
+CREATE DATABASE conduit;
 
-GRANT ALL ON conduit_database.* TO 'a' @ 'localhost' IDENTIFIED BY
+GRANT ALL ON conduit.* TO 'a' @ 'localhost' IDENTIFIED BY
   'password' WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
 
 SHOW DATABASES;
 
-USE conduit_database;
+USE conduit;
 
 CREATE EXTENSION IF NOT EXISTS citext;
 
