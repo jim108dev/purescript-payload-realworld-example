@@ -1,6 +1,6 @@
 -- | Reminder: All functions are supposed to do what they say otherwise it is an input error or an
--- | other kind of error. Input errors are returned others are thrown.
-module Server.Profile.Persistence.Postgres where
+-- | other kind of error. Input errors are returned, others are thrown.
+module Server.Profile.Persistence.Postgres (mkHandle) where
 
 import Prelude
 

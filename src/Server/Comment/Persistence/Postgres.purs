@@ -1,4 +1,4 @@
-module Server.Comment.Persistence.Postgres where
+module Server.Comment.Persistence.Postgres (mkHandle) where
 
 import Prelude
 
