@@ -6,6 +6,6 @@ CREATE DATABASE conduit;
 CREATE USER a WITH ENCRYPTED PASSWORD 'password';
 GRANT ALL PRIVILEGES ON DATABASE conduit TO a;
 
-\connect
+\connect conduit
 CREATE EXTENSION IF NOT EXISTS citext;
 
