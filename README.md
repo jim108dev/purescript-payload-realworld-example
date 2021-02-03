@@ -13,8 +13,6 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
     1. Run:
 
     ```sh
-    # Clone the patched version of payload
-    git clone https://github.com/jim108dev/purescript-payload.git
     # This repo
     git clone https://github.com/jim108dev/purescript-payload-realworld-example.git
     cd purescript-payload-realworld-example
