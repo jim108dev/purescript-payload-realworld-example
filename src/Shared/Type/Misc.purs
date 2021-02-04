@@ -49,7 +49,7 @@ type Offset
   = Int
 
 type Password
-  = ShortString
+  = LongString
 
 type Secret
   = String

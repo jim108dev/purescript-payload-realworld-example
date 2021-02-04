@@ -3,7 +3,6 @@
 module Server.User.Persistence.Postgres (mkHandle) where
 
 import Prelude
-
 import Control.Monad.Except (throwError)
 import Data.Array (head)
 import Data.Either (Either(..))
@@ -29,7 +28,7 @@ mkHandle p =
 findByCredentials :: Pool -> Credentials -> Aff Result
 findByCredentials pool { email, password } =
   withClient pool \conn ->
-    query readJson (Query """SELECT * FROM "user" WHERE email = $1 AND password = $2""" :: Query User)
+    query readJson (Query """SELECT * FROM "user" WHERE email = $1 AND password = crypt($2, password)""" :: Query User)
       [ p_ email, p_ password ]
       conn
       >>= validate
@@ -53,7 +52,7 @@ findById pool id =
 insert :: Pool -> Raw -> Aff Result
 insert pool u =
   withClient pool \conn ->
-    query readJson (Query """INSERT INTO "user" (bio, email, image, password, username) VALUES ($1, $2, $3, $4, $5) RETURNING *""" :: Query User)
+    query readJson (Query """INSERT INTO "user" (bio, email, image, password, username) VALUES ($1, $2, $3, crypt($4, gen_salt('bf')), $5) RETURNING *""" :: Query User)
       [ p_ u.bio, p_ u.email, p_ u.image, p_ u.password, p_ u.username ]
       conn
       >>= validate
@@ -61,7 +60,17 @@ insert pool u =
 update :: Pool -> Raw -> UserId -> Aff Result
 update pool r id =
   withClient pool \conn ->
-    query readJson (Query """UPDATE "user" SET  bio = $1, email = $2, image = $3, password = $4, username = $5 WHERE id = $6 RETURNING *""" :: Query User)
+    query readJson
+      ( Query
+          """UPDATE "user" SET bio = $1, email = $2, image = $3
+    , password = 
+      CASE  
+			  WHEN password = crypt($4, password) THEN password 
+          ELSE crypt($4, gen_salt('bf'))
+		  END     
+    , username = $5 WHERE id = $6 RETURNING *""" ::
+          Query User
+      )
       [ p_ r.bio, p_ r.email, p_ r.image, p_ r.password, p_ r.username, p_ id ]
       conn
       >>= validate
