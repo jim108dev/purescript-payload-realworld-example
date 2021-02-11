@@ -66,13 +66,6 @@ subQuery q =
         s <- render 0 <$> ppQuery q
         pure $ "(" <> s <> ")"
 
-arraySubQuery :: forall a i s. GetCols i => FullQuery s (Record i) → Col s a
-arraySubQuery q =
-  Col
-    $ Any do
-        s <- render 0 <$> ppQuery q
-        pure $ "SELECT ARRAY(" <> s <> ")::text[]"
-
 any :: forall a s. Col s (Array a) -> Col s a
 any col =
   Col
