@@ -49,8 +49,7 @@ This file contains some comments about the decisions which were made.
 ## Comments
 
 1. Postgres:
-   1. [purescript-node-postgres](https://github.com/epost/purescript-node-postgres) had no error fields for queries. [purescript-postgresql-client](https://github.com/rightfold/purescript-postgresql-client) had error support but it uses only arrays to exchange data which is error-prone. I have incorporated `PGError` of purescript-postgresql-client into purescript-node-postgres (see `Query.purs`). Input errors are exchanged via `InputError`. Non-input errors are thrown.
-   1. The Postgres `json` function was not compatible to `JSDate`. The custom function `timestamp_to_char` (see [sql/Functions.sql](./sql/Functions.sql)) in combination with [purescript-simple-timestamp](https://github.com/reactormonk/purescript-simple-timestamp) was used.
+   1. In order to create type-safe sql queries [purescript-selda](https://github.com/Kamirus/purescript-selda) was used. As of the time of writing, there was a bug in the update functionality (see [Issue](https://github.com/Kamirus/purescript-selda/issues/42)). This is causing the update tests to fail.
 1. PureScript Payload:
    1. The `Failure` type did not fit for CORS, because it requires a custom header with every request.
    1. Payload does not output validation errors. In order to see them, Payload was patched. (Compare <https://github.com/hoodunit/purescript-payload/compare/master...jim108dev:master>)
