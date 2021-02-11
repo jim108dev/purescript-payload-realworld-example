@@ -1,7 +1,6 @@
-module Server.Article.Api.Main (mkHandle) where
+module Server.Article.Api.Main where
 
 import Prelude
-
 import Data.Bifunctor (bimap)
 import Data.Either (Either(..))
 import Effect.Aff (Aff)
@@ -10,9 +9,8 @@ import Payload.Server.Response (notFound, ok, unprocessableEntity)
 import Server.Article.Api.Type.CreateDto (CreateDto, unwrapCreateDto)
 import Server.Article.Api.Type.Misc (MultipleDto, Param, SingleDto, TagsDto, mkMultipleDto, mkSingleDto, mkTagsDto)
 import Server.Article.Api.Type.UpdateDto (UpdateDto, unwrapUpdateDto)
-import Server.Article.Application.Main as App
 import Server.Article.Interface.Persistence (Handle) as Persistence
-import Server.Article.Persistence.Postgres (mkHandle) as Postgres
+import Server.Article.Persistence.Postgres.Main as Postgres
 import Server.Article.Type.Misc (FullQuery, InputError(..), RangeQuery)
 import Server.Shared.Api.Main (setHeaders, renderErrorEntity, renderErrorMessage)
 import Server.Shared.Api.Type.Misc (AuthGuard, CorsGuard, OptionalGuard, TResponse)
@@ -48,7 +46,7 @@ feed h { query: q, guards: g } =
   setHeaders g.origin
     <$> bimap renderError (ok <<< mkMultipleDto)
     <$> Right
-    <$> (next h).findMostRecentFromFollowee g.userId q
+    <$> (next h).searchMostRecentFromFollowees g.userId q
 
 get :: Handle -> { guards :: OptionalGuard, params :: Param } -> Aff (TResponse SingleDto)
 get h { guards: g, params: p } =
@@ -60,25 +58,25 @@ create :: Handle -> { body :: CreateDto, guards :: AuthGuard } -> Aff (TResponse
 create h { body: b, guards: g } =
   setHeaders g.origin
     <$> bimap renderError (ok <<< mkSingleDto)
-    <$> App.create (next h) (unwrapCreateDto b) g.userId
+    <$> (next h).insert (unwrapCreateDto b) g.userId
 
 update :: Handle -> { body :: UpdateDto, params :: Param, guards :: AuthGuard } -> Aff (TResponse SingleDto)
 update h { body: b, params: p, guards: g } =
   setHeaders g.origin
     <$> bimap renderError (ok <<< mkSingleDto)
-    <$> App.update (next h) (unwrapUpdateDto b) p.slug g.userId
+    <$> (next h).update (unwrapUpdateDto b) p.slug g.userId
 
 favorite :: Handle -> { params :: Param, guards :: AuthGuard } -> Aff (TResponse SingleDto)
 favorite h { params: p, guards: g } =
   setHeaders g.origin
     <$> bimap renderError (ok <<< mkSingleDto)
-    <$> App.favorite (next h) p.slug g.userId
+    <$> (next h).insertFavorite p.slug g.userId
 
 unfavorite :: Handle -> { params :: Param, guards :: AuthGuard } -> Aff (TResponse SingleDto)
 unfavorite h { params: p, guards: g } =
   setHeaders g.origin
     <$> bimap renderError (ok <<< mkSingleDto)
-    <$> App.unfavorite (next h) p.slug g.userId
+    <$> (next h).deleteFavorite p.slug g.userId
 
 delete :: Handle -> { params :: Param, guards :: AuthGuard } -> Aff (TResponse Empty)
 delete h { params: p, guards: g } =

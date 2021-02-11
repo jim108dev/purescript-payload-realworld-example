@@ -29,7 +29,7 @@ import Server.Shell.Util.Config (readOrThrow) as Config
 import Shared.Util.String (format1, format2)
 import Simple.JSON as JSON
 import Test.Server.Shell.Interface.Api (Handle)
-import Test.Server.Shell.Persistence.Postgres (endPool, readSqlStatements, resetDB)
+import Test.Server.Shell.Persistence.Postgres.Main (resetDB)
 import Test.Server.Shell.Type.Misc (Raw, TestCase)
 import Test.Server.Shell.Type.Misc (WithApi)
 import Test.Server.Shell.Util.Payload (delete_, get_, post_, put_, respMatchesJson, withServer) as P
@@ -93,8 +93,8 @@ main =
     activeRs <- pure $ filter (\r -> r.x == Nothing || r.x == Just false) rs
     ts <- mkTestCase "./test/Server" `traverse` activeRs
     h1 <- liftEffect $ Aggregate.mkHandle config
-    sqlStatements <- readSqlStatements "./sql/ResetTables.sql"
-    resetDB h1.persistence.pool sqlStatements
+    sql <- readTextFile UTF8 "./sql/ResetTables.sql"
+    resetDB h1.persistence.pool sql
     runTestWith runTest do
       let
         apiImpl = Api.mkHandle h1
@@ -113,7 +113,6 @@ main =
         h2 = mkHandle withApi config
       suite "Tests" do
         runTestCase h2 `traverse_` ts
-    endPool h1.persistence.pool
 
 runTestCase :: Handle -> TestCase -> TestSuite
 runTestCase h t =

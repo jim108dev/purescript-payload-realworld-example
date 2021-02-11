@@ -15,13 +15,13 @@ DROP TABLE IF EXISTS article CASCADE;
 CREATE TABLE article (
   author_id int NOT NULL,
   body text NOT NULL,
-  created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+  created_at timestamp with time zone DEFAULT '2016-02-18 03:22:56', -- CURRENT_TIMESTAMP,
   description text NOT NULL,
   id int GENERATED ALWAYS AS IDENTITY,
   slug CITEXT NOT NULL CONSTRAINT slug_unique UNIQUE,
   tag_list CITEXT[] NOT NULL,
   title CITEXT NOT NULL,
-  updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp with time zone DEFAULT '2016-02-18 03:22:56', --CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   CONSTRAINT author_exists FOREIGN KEY (author_id) REFERENCES "user" (id) ON DELETE CASCADE
 );
@@ -30,8 +30,8 @@ DROP TABLE IF EXISTS comment CASCADE;
 
 CREATE TABLE comment (
   id int GENERATED ALWAYS AS IDENTITY,
-  created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
-  updated_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
+  created_at timestamp with time zone DEFAULT '2016-02-18 03:22:56', --CURRENT_TIMESTAMP,
+  updated_at timestamp with time zone DEFAULT '2016-02-18 03:22:56', --CURRENT_TIMESTAMP,
   body text NOT NULL,
   article_id int NOT NULL,
   author_id int NOT NULL,
@@ -59,4 +59,15 @@ CREATE TABLE favorited (
   CONSTRAINT user_exists FOREIGN KEY (user_id) REFERENCES "user" (id) ON DELETE CASCADE,
   CONSTRAINT article_exists FOREIGN KEY (article_id) REFERENCES "article" (id) ON DELETE CASCADE
 );
+
+DROP VIEW IF EXISTS TAG;
+
+CREATE VIEW TAG AS
+SELECT
+  ARRAY ( SELECT DISTINCT
+      unnest(tag_list)
+    FROM
+      article
+    ORDER BY
+      1)::text[];
 

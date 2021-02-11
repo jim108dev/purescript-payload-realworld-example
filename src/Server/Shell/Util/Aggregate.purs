@@ -4,7 +4,7 @@ import Prelude
 
 import Effect (Effect)
 import Server.Shared.Interface.Aggregate (Handle)
-import Server.Shell.Persistence.Postgres as Postgres
+import Server.Shell.Persistence.Postgres.Main as Postgres
 import Server.Shell.Type.Misc (Config)
 import Server.Shell.Type.PersistenceImpl (PersistenceImpl(..)) as PI
 import Server.Shell.Util.Token as Token
@@ -17,4 +17,3 @@ mkHandle config = do
     { persistence
     , token: Token.mkHandle config.token.secret
     }
-

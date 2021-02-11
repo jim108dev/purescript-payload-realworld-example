@@ -1,14 +1,17 @@
 module Server.Profile.Type.Misc where
 
 import Data.Maybe (Maybe)
-import Shared.Type.Misc (Bio, Username, Image)
+import Shared.Type.Misc (Bio, Image, Username, Identity)
+
+type Template col
+  = ( bio :: col (Maybe Bio)
+    , following :: col Boolean
+    , image :: col (Maybe Image)
+    , username :: col Username
+    )
 
 type Profile
-  = { bio :: Maybe Bio
-    , image :: Maybe Image
-    , following :: Boolean
-    , username :: Username
-    }
+  = { | Template Identity }
 
 data InputError
   = NOT_FOUND

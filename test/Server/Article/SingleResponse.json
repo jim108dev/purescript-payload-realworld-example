@@ -1,6 +1,6 @@
 {
     "article": {
-        "updatedAt": "2016-02-18T03:22:56.637Z",
+        "updatedAt": "2016-02-18T02:22:56Z",
         "title": "How to train your dragon",
         "tagList": [
             "reactjs",
@@ -11,7 +11,7 @@
         "favoritesCount": 0,
         "favorited": false,
         "description": "Ever wonder how?",
-        "createdAt": "2016-02-18T03:22:56.637Z",
+        "createdAt": "2016-02-18T02:22:56Z",
         "body": "You have to believe",
         "author": {
             "username": "jake",

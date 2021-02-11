@@ -12,14 +12,15 @@ import Server.User.Api.Interface.Spec (Routes) as User
 type Spec
   = { guards :: Guards
     , routes ::
-        { shared :: CorsRoutes
-        , article :: Article.Routes
+        { article :: Article.Routes
         , comment :: Comment.Routes
         , profile :: Profile.Routes
+        , shared :: CorsRoutes
         , user :: User.Routes
         }
     }
 
+-- 
 type CorsRoutes
   = Payload.Routes "/api"
       { guards :: CorsGuard

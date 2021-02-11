@@ -13,9 +13,8 @@ import Server.User.Api.Type.CreateDto (CreateDto, unwrapCreateDto)
 import Server.User.Api.Type.LoginDto (LoginDto, unwrapLoginDto)
 import Server.User.Api.Type.Misc (Dto, mkDto)
 import Server.User.Api.Type.UpdateDto (UpdateDto, unwrapUpdateDto)
-import Server.User.Application.Main as App
 import Server.User.Interface.Persistence (Handle) as Persistence
-import Server.User.Persistence.Postgres (mkHandle) as Postgres
+import Server.User.Persistence.Postgres.Main (mkHandle) as Postgres
 import Server.User.Type.Misc (InputError(..), User)
 
 mkHandle :: Handle -> _
@@ -49,7 +48,7 @@ getCurrent h { guards: g } =
 update :: Handle -> { body :: UpdateDto, guards :: AuthGuard } -> Aff (TResponse Dto)
 update h { guards: g, body } =
   setHeaders g.origin
-    <$> (App.update (next h) (unwrapUpdateDto body) g.userId >>= mkTResponse h)
+    <$> ((next h).update (unwrapUpdateDto body) g.userId >>= mkTResponse h)
 
 delete :: Handle -> { guards :: AuthGuard } -> Aff (TResponse Dto)
 delete h { guards: g } =

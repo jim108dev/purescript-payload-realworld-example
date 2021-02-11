@@ -1,7 +1,6 @@
 module Server.Comment.Api.Main where
 
 import Prelude
-
 import Data.Bifunctor (bimap)
 import Data.Either (Either(..))
 import Effect.Aff (Aff)
@@ -10,7 +9,7 @@ import Payload.Server.Response (notFound, ok, unprocessableEntity)
 import Server.Comment.Api.Type.CreateDto (CreateDto, unwrapCreateDto)
 import Server.Comment.Api.Type.Misc (MultipleDto, Params, SingleDto, mkMultipleDto, mkSingleDto)
 import Server.Comment.Interface.Persistence (Handle) as Persistence
-import Server.Comment.Persistence.Postgres (mkHandle) as Postgres
+import Server.Comment.Persistence.Postgres.Main as Postgres
 import Server.Comment.Type.Misc (InputError(..))
 import Server.Shared.Api.Main (setHeaders, renderErrorEntity, renderErrorMessage)
 import Server.Shared.Api.Type.Misc (ArticleParam, AuthGuard, OptionalGuard, TResponse)

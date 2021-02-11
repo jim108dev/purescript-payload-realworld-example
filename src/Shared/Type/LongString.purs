@@ -1,19 +1,18 @@
-module Shared.Type.LongString where
+module Shared.Type.LongString (fromString, unsafeFromString, toString, LongString) where
 
 import Prelude
-import Control.Monad.Except (except)
+import Control.Monad.Except (except, runExcept)
+import Data.Bifunctor (lmap)
 import Data.Either (Either(..), fromRight)
 import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Eq (genericEq)
 import Data.Generic.Rep.Show (genericShow)
 import Data.String (length, toLower)
-import Database.Postgres.SqlValue (class IsSqlValue)
+import Database.PostgreSQL (class FromSQLValue, class ToSQLValue)
 import Foreign (F, Foreign, ForeignError(..), unsafeToForeign)
 import Foreign.Class (class Decode, class Encode)
 import Foreign.Generic (defaultOptions, genericDecode, genericEncode)
 import Payload.Server.Params (class DecodeParam)
 import Simple.JSON as JSON
-import Unsafe.Coerce (unsafeCoerce)
 
 newtype LongString
   = LongString String
@@ -31,9 +30,6 @@ fromString s =
 -- | A partial version of `fromString`.
 unsafeFromString :: Partial => String -> LongString
 unsafeFromString = fromRight <<< fromString
-
-l_ :: Partial => String -> LongString
-l_ = unsafeFromString
 
 toString :: LongString -> String
 toString (LongString s) = s
@@ -53,23 +49,26 @@ instance encodeLongString :: Encode LongString where
   encode = genericEncode $ defaultOptions { unwrapSingleConstructors = true }
 
 instance readForeignLongString :: JSON.ReadForeign LongString where
-  readImpl = readImpl
+  readImpl = fromForeign
 
-readImpl :: Foreign -> F LongString
-readImpl f = do
+fromForeign :: Foreign -> F LongString
+fromForeign f = do
   str :: String <- JSON.readImpl f
   except case fromString str of
     Left e -> Left $ pure $ ForeignError e
     Right a -> Right a
 
 instance writeForeignLongString :: JSON.WriteForeign LongString where
-  writeImpl = writeImpl
+  writeImpl = toForeign
 
-writeImpl :: LongString -> Foreign
-writeImpl = unsafeToForeign <<< toString
+toForeign :: LongString -> Foreign
+toForeign = unsafeToForeign <<< toString
 
 instance decodeParamLongString :: DecodeParam LongString where
   decodeParam = fromString
 
-instance isSqlValueShortString :: IsSqlValue LongString where
-  toSql = unsafeCoerce
+instance fromSqlValueLongString :: FromSQLValue LongString where
+  fromSQLValue = lmap show <<< runExcept <<< fromForeign
+
+instance toSQLValueLongString :: ToSQLValue LongString where
+  toSQLValue = toForeign

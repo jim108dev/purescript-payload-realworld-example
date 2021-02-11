@@ -1,7 +1,6 @@
 module Server.Comment.Type.Misc where
 
-import Data.Either (Either)
-import Shared.Type.Misc (Author, Body, CreatedAt, UpdatedAt, CommentId)
+import Shared.Type.Misc (Author, Body, CommentId, CreatedAt, UpdatedAt)
 
 type Raw
   = { body :: Body
@@ -18,6 +17,3 @@ type Comment
 data InputError
   = NOT_FOUND
   | EMAIL_EXITS
-
-type SingleResult
-  = Either InputError Comment

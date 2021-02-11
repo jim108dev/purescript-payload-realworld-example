@@ -11,11 +11,13 @@ import Server.User.Api.Main (mkHandle) as User
 mkHandle :: Handle -> _
 mkHandle h =
   { handlers:
-      { user: User.mkHandle h
-      , profile: Profile.mkHandle h.persistence
-      , article: Article.mkHandle h.persistence
+      { article: Article.mkHandle h.persistence
       , comment: Comment.mkHandle h.persistence
+      , profile: Profile.mkHandle h.persistence
       , shared: { options: options }
+      , user: User.mkHandle h
       }
   , guards: Guard.mkHandle h.token
   }
+
+--,  --,

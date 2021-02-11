@@ -1,33 +1,37 @@
 module Server.Article.Type.Misc where
 
-import Data.Either (Either)
-import Data.Maybe (Maybe(..), fromMaybe)
-import Shared.Type.Misc (Author, Body, CreatedAt, Description, Favorited, FavoritesCount, Limit, Offset, Slug, Tag, Title, UpdatedAt)
-import Shared.Type.ShortString (ShortString)
+import Data.Maybe (Maybe, fromMaybe)
+import Shared.Type.Misc (ArticleId, AuthorTemplate, Body, CreatedAt, Description, Favorited, FavoritesCount, Identity, Limit, Offset, Slug, Tag, Title, UpdatedAt, Username)
 
-type Article
-  = { author :: Author
-    , body :: Body
-    , createdAt :: CreatedAt
-    , description :: Description
-    , favorited :: Favorited
-    , favoritesCount :: FavoritesCount
-    , slug :: Slug
-    , tagList :: Array Tag
-    , title :: Title
-    , updatedAt :: UpdatedAt
-    }
+type RawTemplate col
+  = ( body :: col Body
+    , description :: col Description
+    , tagList :: col (Array Tag)
+    , title :: col Title
+    )
 
 type Raw
-  = { body :: Body
-    , description :: Description
-    , tagList :: Maybe (Array Tag)
-    , title :: Title
-    }
+  = { | RawTemplate Identity }
+
+type Template col
+  = ( author :: { | AuthorTemplate col }
+    , body :: col Body
+    , description :: col Description
+    , tagList :: col (Array Tag)
+    , title :: col Title
+    , createdAt :: col CreatedAt
+    , favorited :: col Favorited
+    , favoritesCount :: col FavoritesCount
+    , slug :: col Slug
+    , updatedAt :: col UpdatedAt
+    )
+
+type Article
+  = { | Template Identity }
 
 type FullQuery
-  = { author :: Maybe ShortString
-    , favorited :: Maybe ShortString
+  = { author :: Maybe Username
+    , favorited :: Maybe Username
     , limit :: Maybe Limit
     , offset :: Maybe Offset
     , tag :: Maybe Tag
@@ -44,7 +48,7 @@ mkRawFromPatch f p =
   { body: fromMaybe f.body p.body
   , description: fromMaybe f.description p.description
   , title: fromMaybe f.title p.title
-  , tagList: Nothing
+  , tagList: f.tagList
   }
 
 type RangeQuery
@@ -59,8 +63,5 @@ data InputError
   | FAVORITED_EXISTS
   | SLUG_CREATION_FAILED
 
-type SingleResult
-  = Either InputError Article
-
 type Id
-  = Int
+  = ArticleId

@@ -2,7 +2,8 @@ module Shared.Type.LowercaseString (fromString, LowercaseString) where
 
 import Prelude
 
-import Control.Monad.Except (except)
+import Control.Monad.Except (except, runExcept)
+import Data.Bifunctor (lmap)
 import Data.Either (Either(..), either, fromRight)
 import Data.Generic.Rep (class Generic)
 import Data.Generic.Rep.Eq (genericEq)
@@ -10,8 +11,8 @@ import Data.Generic.Rep.Show (genericShow)
 import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), Replacement(..), length, replaceAll, toLower, trim)
 import Data.String.Regex (regex, replace)
-import Data.String.Regex.Flags (global, noFlags)
-import Database.Postgres.SqlValue (class IsSqlValue)
+import Data.String.Regex.Flags (global)
+import Database.PostgreSQL (class FromSQLValue, class ToSQLValue)
 import Foreign (F, Foreign, ForeignError(..), unsafeToForeign)
 import Foreign.Class (class Decode, class Encode)
 import Foreign.Generic (defaultOptions, genericDecode, genericEncode)
@@ -21,7 +22,6 @@ import Payload.Server.Internal.Querystring (ParsedQuery)
 import Payload.Server.Params (class DecodeParam)
 import Payload.Server.QueryParams (class DecodeQueryParam, DecodeError(..))
 import Simple.JSON as JSON
-import Unsafe.Coerce (unsafeCoerce)
 
 newtype LowercaseString
   = LowercaseString String
@@ -34,10 +34,8 @@ fromString s =
     len = length i
   in
     case unit of
-      _
-        | len == 0 -> Left "can't be empty"
-      _
-        | len > 50 -> Left "can't be longer than 50 characters"
+      _ | len == 0 -> Left "can't be empty"
+      _ | len > 50 -> Left "can't be longer than 50 characters"
       _ -> Right $ LowercaseString i
 
 mkIdentifier :: String -> String
@@ -52,9 +50,6 @@ mkIdentifier =
 -- | A partial version of `fromString`.
 unsafeFromString :: Partial => String -> LowercaseString
 unsafeFromString = fromRight <<< fromString
-
-s_ :: Partial => String -> LowercaseString
-s_ = unsafeFromString
 
 toString :: LowercaseString -> String
 toString (LowercaseString s) = s
@@ -74,23 +69,20 @@ instance encodeLowercaseString :: Encode LowercaseString where
   encode = genericEncode $ defaultOptions { unwrapSingleConstructors = true }
 
 instance readForeignLowercaseString :: JSON.ReadForeign LowercaseString where
-  readImpl = readImpl
+  readImpl = fromForeign
 
-readImpl :: Foreign -> F LowercaseString
-readImpl f = do
+fromForeign :: Foreign -> F LowercaseString
+fromForeign f = do
   str :: String <- JSON.readImpl f
   except case fromString str of
     Left e -> Left $ pure $ ForeignError e
     Right a -> Right a
 
 instance writeForeignLowercaseString :: JSON.WriteForeign LowercaseString where
-  writeImpl = writeImpl
+  writeImpl = toForeign
 
-writeImpl :: LowercaseString -> Foreign
-writeImpl = unsafeToForeign <<< toString
-
-instance isSqlValueLowercaseString :: IsSqlValue LowercaseString where
-  toSql = unsafeCoerce
+toForeign :: LowercaseString -> Foreign
+toForeign = unsafeToForeign <<< toString
 
 instance decodeParamLowercaseString :: DecodeParam LowercaseString where
   decodeParam = fromString <<< toLower
@@ -108,3 +100,9 @@ decodeQueryParam queryObj queryKey = case Object.lookup queryKey queryObj of
   Just arr -> decodeErr arr $ "Expected single value but received multiple: " <> show arr
   where
   decodeErr values msg = Left (QueryDecodeError { key: queryKey, values, message: msg, queryObj })
+
+instance fromSqlValueLowercaseString :: FromSQLValue LowercaseString where
+  fromSQLValue = lmap show <<< runExcept <<< fromForeign
+
+instance toSQLValueLowercaseString :: ToSQLValue LowercaseString where
+  toSQLValue = toForeign

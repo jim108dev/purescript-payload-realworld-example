@@ -11,4 +11,3 @@ type Handle
     , insertFollower :: FollowerId -> FolloweeUsername -> Aff (Either InputError Profile)
     , deleteFollower :: FollowerId -> FolloweeUsername -> Aff (Either InputError Profile)
     }
-

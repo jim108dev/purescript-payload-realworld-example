@@ -1,7 +1,7 @@
 module Server.Shared.Type.Misc where
 
-import Database.Postgres (Pool) as Postgres
+import Database.PostgreSQL (Pool) as PG
 
 data Pool
-  = PostgresPool Postgres.Pool
+  = PostgresPool PG.Pool
 

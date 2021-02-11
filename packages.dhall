@@ -130,6 +130,71 @@ let additions =
           ]
         , repo = "https://github.com/jim108dev/purescript-payload.git"
         , version = "master"
+        },
+        postgresql-client =
+        { dependencies =
+          [ "aff"
+          , "argonaut"
+          , "arrays"
+          , "assert"
+          , "bifunctors"
+          , "bytestrings"
+          , "console"
+          , "datetime"
+          , "decimals"
+          , "effect"
+          , "either"
+          , "exceptions"
+          , "foldable-traversable"
+          , "foreign"
+          , "foreign-generic"
+          , "foreign-object"
+          , "js-date"
+          , "lists"
+          , "maybe"
+          , "newtype"
+          , "nullable"
+          , "prelude"
+          , "psci-support"
+          , "string-parsers"
+          , "test-unit"
+          , "transformers"
+          , "tuples"
+          ]
+        , repo = "https://github.com/rightfold/purescript-postgresql-client.git"
+        , version = "v3.0.3"
+        },
+        prettyprinter = 
+        { dependencies = 
+            [ "prelude"
+            , "unfoldable"
+            , "random"
+            , "ansi"
+            , "console"
+            ]
+        , repo =
+            "https://github.com/Kamirus/purescript-prettyprinter.git"
+        , version = 
+            "master"
+        },
+        selda =
+        { dependencies =
+          [ "console"
+          , "exists"
+          , "heterogeneous"
+          , "lists"
+          , "node-sqlite3"
+          , "postgresql-client"
+          , "prelude"
+          , "simple-json"
+          , "strings"
+          , "test-unit"
+          , "transformers"
+          , "variant"
+          , "prettyprinter"
+          ]
+        , repo = "https://github.com/Kamirus/purescript-selda.git"
+        , version = "master"
         }
       }
 in      upstream

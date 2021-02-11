@@ -2,9 +2,12 @@ module Shared.Type.Misc where
 
 import Data.Maybe (Maybe)
 import Shared.Type.LongString (LongString)
-import Shared.Type.LowercaseString (LowercaseString(..))
-import Shared.Type.ShortString (ShortString(..))
+import Shared.Type.LowercaseString (LowercaseString)
+import Shared.Type.ShortString (ShortString)
 import Timestamp (Timestamp)
+
+type ArticleId
+  = Int
 
 type Bio
   = LongString
@@ -75,9 +78,15 @@ type Username
 type UserId
   = Int
 
+type AuthorTemplate col
+  = ( bio :: col (Maybe Bio)
+    , following :: col Following
+    , image :: col (Maybe Image)
+    , username :: col Username
+    )
+
 type Author
-  = { bio :: Maybe Bio
-    , following :: Following
-    , image :: Maybe Image
-    , username :: Username
-    }
+  = { | AuthorTemplate Identity }
+
+type Identity a
+  = a

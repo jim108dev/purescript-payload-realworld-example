@@ -7,7 +7,7 @@ import Payload.ResponseTypes (Response)
 import Payload.Server.Response (notFound, ok, unprocessableEntity)
 import Server.Profile.Api.Type.Misc (Dto, mkDto)
 import Server.Profile.Interface.Persistence (Handle) as Persistence
-import Server.Profile.Persistence.Postgres (mkHandle) as Postgres
+import Server.Profile.Persistence.Postgres.Main as Postgres
 import Server.Profile.Type.Misc (InputError(..))
 import Server.Shared.Api.Main (setHeaders, renderErrorMessage)
 import Server.Shared.Api.Type.Misc (AuthGuard, OptionalGuard, TResponse, UserParam)
@@ -17,12 +17,13 @@ import Server.Shared.Type.Misc (Pool(..))
 mkHandle :: Handle -> _
 mkHandle h =
   { byUsername:
-      { get: get h
-      , follow: follow h
+      { follow: follow h
+      , get: get h
       , unfollow: unfollow h
       }
   }
 
+--
 next :: Handle -> Persistence.Handle
 next h = case h.pool of
   PostgresPool pool -> Postgres.mkHandle pool

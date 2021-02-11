@@ -1,9 +1,8 @@
 {
     "user": {
-        "bio": "I work at statefarm",
-        "email": "jake@jake.jake",
+        "username": "jake",
         "image": null,
-        "password": "jake",
-        "username": "jake"
+        "email": "jake@jake.jake",
+        "bio": "I work at statefarm"
     }
 }

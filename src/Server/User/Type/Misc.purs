@@ -3,7 +3,7 @@ module Server.User.Type.Misc where
 import Data.Either (Either)
 import Data.Maybe (Maybe, fromMaybe)
 import Data.Nullable (Nullable)
-import Shared.Type.Misc (Bio, Email, Image, Password, Username, UserId)
+import Shared.Type.Misc (Bio, Email, Image, Password, UserId, Username, Identity)
 import Shared.Util.Maybe (fromMaybeNullable)
 
 type Credentials
@@ -11,30 +11,26 @@ type Credentials
     , password :: Password
     }
 
+type Template col maybe r
+  = ( bio :: col (maybe Bio)
+    , email :: col Email
+    , image :: col (maybe Image)
+    , password :: col Password
+    , username :: col Username
+    | r
+    )
+
+type IdTemplate col key
+  = ( id :: col (key UserId) )
+
 type Raw
-  = { bio :: Maybe Bio
-    , email :: Email
-    , image :: Maybe Image
-    , password :: Password
-    , username :: Username
-    }
+  = { | Template Identity Maybe () }
 
 type Patch
-  = { bio :: Maybe (Nullable Bio)
-    , email :: Maybe Email
-    , image :: Maybe (Nullable Image)
-    , password :: Maybe Password
-    , username :: Maybe Username
-    }
+  = { | Template Maybe Nullable () }
 
 type User
-  = { bio :: Maybe Bio
-    , email :: Email
-    , id :: UserId
-    , image :: Maybe Image
-    , password :: Password
-    , username :: Username
-    }
+  = { | Template Identity Maybe (IdTemplate Identity Identity) }
 
 mkRawFromPatch :: User -> Patch -> Raw
 mkRawFromPatch f p =
@@ -49,6 +45,3 @@ data InputError
   = EMAIL_EXISTS
   | USERNAME_EXISTS
   | NOT_FOUND
-
-type Result
-  = Either InputError User
