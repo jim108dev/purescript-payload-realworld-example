@@ -1,6 +1,7 @@
 module Server.Shared.Persistence.Postgres.Main where
 
 import Prelude
+
 import Control.Monad.Error.Class (throwError)
 import Data.Either (Either(..))
 import Database.PostgreSQL as PG
@@ -38,19 +39,19 @@ cryptGenSalt value =
         bf <- showCol $ litPG "bf"
         pure $ "crypt(" <> v <> ", gen_salt(" <> bf <> "))"
 
-castToTextArray :: forall s a. Col s a -> Col s a
-castToTextArray col =
+toTextArray :: forall s a. Col s a -> Col s a
+toTextArray col =
   Col
     $ Any do
         v <- showCol col
         pure $ v <> "::TEXT[]"
 
-castToArrayTextArray :: forall s a. Col s a -> Col s a
-castToArrayTextArray col =
+toArrayTextArray :: forall a i s. GetCols i => FullQuery s (Record i) → Col s a
+toArrayTextArray q =
   Col
     $ Any do
-        v <- showCol col
-        pure $ "ARRAY (" <> v <> ")::TEXT[]"
+        s <- render 0 <$> ppQuery q
+        pure $ "ARRAY (" <> s <> ")::TEXT[]"
 
 unnest :: forall s a. Col s a -> Col s a
 unnest col =
@@ -59,7 +60,7 @@ unnest col =
         v <- showCol col
         pure $ "UNNEST (" <> v <> ")"
 
-subQuery :: forall a i s. GetCols i => FullQuery s (Record i) → Col s a
+subQuery :: forall a s. FullQuery s { value :: Col s a } → Col s a
 subQuery q =
   Col
     $ Any do

@@ -60,14 +60,3 @@ CREATE TABLE favorited (
   CONSTRAINT article_exists FOREIGN KEY (article_id) REFERENCES "article" (id) ON DELETE CASCADE
 );
 
-DROP VIEW IF EXISTS TAG;
-
-CREATE VIEW TAG AS
-SELECT
-  ARRAY ( SELECT DISTINCT
-      unnest(tag_list)
-    FROM
-      article
-    ORDER BY
-      1)::text[];
-

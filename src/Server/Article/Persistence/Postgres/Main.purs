@@ -6,9 +6,9 @@ import Data.Either (Either(..))
 import Data.Maybe (Maybe(..), maybe)
 import Database.PostgreSQL (Pool)
 import Effect.Aff (Aff)
-import Selda (Col, aggregate, count, distinct, innerJoin, isNull, leftJoin, limit, lit, not_, orderBy, restrict, selectFrom, selectFrom_, (.==))
+import Selda (Col, Table(..), aggregate, asc, count, distinct, innerJoin, isNull, leftJoin, limit, lit, not_, orderBy, restrict, selectFrom, selectFrom_, (.==))
 import Selda (FullQuery) as S
-import Selda.PG (litPG)
+import Selda.PG (generateSeries, litPG)
 import Selda.PG.Class (deleteFrom, insert1_, query, query1_)
 import Selda.PG.Class (update) as S
 import Selda.Query.Class (runSelda)
@@ -17,8 +17,9 @@ import Server.Article.Interface.Persistence (Handle)
 import Server.Article.Persistence.Postgres.Type.Misc (DbOutputCols)
 import Server.Article.Persistence.Postgres.Validation (validateArray, validateSingle, validateSlug, validateTags)
 import Server.Article.Type.Misc (Article, FullQuery, Id, InputError(..), Patch, RangeQuery, Raw)
-import Server.Shared.Persistence.Postgres.Main (any, castToTextArray, subQuery, withConnection)
-import Server.Shared.Persistence.Type.Misc (articleTable, favoritedTable, followingTable, tagTable, userTable)
+import Server.Shared.Persistence.Postgres.Main (any, toArrayTextArray, toTextArray, logQuery, subQuery, withConnection)
+import Server.Shared.Persistence.Postgres.Main (unnest)
+import Server.Shared.Persistence.Type.Misc (articleTable, favoritedTable, followingTable, unitTable, userTable)
 import Shared.Type.LowercaseString (fromString)
 import Shared.Type.Misc (FollowerId, Slug, Tag, UserId)
 import Shared.Type.ShortString (toString)
@@ -83,12 +84,12 @@ selectBySlug slug followerId =
     restrict $ s.slug .== litPG slug
     pure s
 
-countFavorites :: forall s. Col s Id -> S.FullQuery s ({ count :: Col s Int })
+countFavorites :: forall s. Col s Id -> S.FullQuery s ({ value :: Col s Int })
 countFavorites id =
   aggregate
     $ selectFrom favoritedTable \f -> do
         restrict $ f.article_id .== id
-        pure { count: count f.article_id }
+        pure { value: count f.article_id }
 
 select :: forall s. Maybe FollowerId -> S.FullQuery s (DbOutputCols s)
 select followerId =
@@ -113,7 +114,7 @@ select followerId =
       , id: a.id
       , image: u.image
       , slug: a.slug
-      , tagList: castToTextArray a.tag_list
+      , tagList: toTextArray a.tag_list
       , title: a.title
       , updatedAt: a.updated_at
       , username: u.username
@@ -207,8 +208,23 @@ delete pool slug userId =
     )
     >>= validateSlug
 
+selectDistinctTagLists :: forall s. S.FullQuery s { tagList :: Col s (Array Tag) }
+selectDistinctTagLists =
+  distinct
+    $ selectFrom articleTable \a -> do
+        let
+          tagList = unnest a.tag_list
+        orderBy asc tagList
+        pure { tagList }
+
+selectTags :: forall s. S.FullQuery s { tags :: Col s (Array Tag) }
+selectTags =
+  selectFrom unitTable \_ ->
+    pure
+      { tags: toArrayTextArray selectDistinctTagLists
+      }
+
 findTags :: Pool -> Aff (Array Tag)
 findTags pool =
-  withConnection pool
-    (\conn -> runSelda conn $ query $ selectFrom tagTable pure)
+  withConnection pool (\conn -> runSelda conn $ query selectTags)
     >>= validateTags

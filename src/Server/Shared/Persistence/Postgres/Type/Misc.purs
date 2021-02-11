@@ -1,10 +1,10 @@
 module Server.Shared.Persistence.Type.Misc where
 
 import Prelude
-
 import Data.DateTime.Instant (Instant)
 import Data.Maybe (Maybe(..))
 import Selda (Table(..))
+import Selda.PG (generateSeries)
 import Selda.Table.Constraint (Auto, Default)
 import Shared.Type.Misc (ArticleId, Bio, Body, CommentId, CreatedAt, Description, Email, Image, Password, Slug, Tag, Title, UserId, Username, UpdatedAt)
 
@@ -69,10 +69,5 @@ type FavoritedTable
 favoritedTable :: FavoritedTable
 favoritedTable = Table { name: "favorited" }
 
-type TagTable
-  = Table
-      ( array :: Array Tag
-      )
-
-tagTable :: TagTable
-tagTable = Table { name: "tag" }
+unitTable :: Table ( i :: Int )
+unitTable = generateSeries 1 1

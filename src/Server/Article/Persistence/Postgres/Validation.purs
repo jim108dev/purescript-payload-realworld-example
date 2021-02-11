@@ -28,13 +28,13 @@ validateSlug result = do
       otherwise -> throwError $ error $ show e
     Right a -> pure $ Right a
 
-validateTags :: Either PGError (Array { array :: Array Tag }) -> Aff (Array Tag)
+validateTags :: Either PGError (Array { tags :: Array Tag }) -> Aff (Array Tag)
 validateTags result = do
   case result of
     Left e -> throwError $ error $ show e
     Right rows -> case head rows of
       Nothing -> pure []
-      Just row -> pure row.array
+      Just row -> pure row.tags
 
 validateSingle :: Either PGError (DbOutput) -> Aff (Either InputError Article)
 validateSingle result = do
