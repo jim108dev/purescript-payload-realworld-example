@@ -49,7 +49,9 @@ This file contains some comments about the decisions which were made.
 ## Comments
 
 1. Postgres:
-   1. In order to create type-safe sql queries [purescript-selda](https://github.com/Kamirus/purescript-selda) was used. As of the time of writing, there was a bug in the update functionality (see [Issue](https://github.com/Kamirus/purescript-selda/issues/42)). This is causing the update tests to fail.
+   1. In order to create type-safe sql queries [purescript-selda](https://github.com/Kamirus/purescript-selda) was used.
+   1. As of the time of writing, there was a bug in the update functionality. (See [Issue](https://github.com/Kamirus/purescript-selda/issues/42)) This is causing the update tests to fail.
+   1. As of the time of writing, the `offset` clause was not implemented. (See [Issue](https://github.com/Kamirus/purescript-selda/issues/50))
 1. PureScript Payload:
    1. The `Failure` type did not fit for CORS, because it requires a custom header with every request.
    1. Payload does not output validation errors. In order to see them, Payload was patched. (Compare <https://github.com/hoodunit/purescript-payload/compare/master...jim108dev:master>)
