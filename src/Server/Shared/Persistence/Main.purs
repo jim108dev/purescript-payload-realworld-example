@@ -1,7 +1,6 @@
 module Server.Shared.Persistence.Postgres.Main where
 
 import Prelude
-
 import Control.Monad.Error.Class (throwError)
 import Data.Either (Either(..))
 import Database.PostgreSQL as PG
@@ -72,7 +71,7 @@ any col =
   Col
     $ Any do
         s <- showCol col
-        pure $ "ANY(" <> s <> ")"
+        pure $ "ANY (" <> s <> ")"
 
 logQuery :: forall s i m. GetCols i => MonadEffect m => FullQuery s { | i } -> m Unit
 logQuery q = do

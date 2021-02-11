@@ -10,11 +10,11 @@ import Database.PostgreSQL (Pool)
 import Effect.Aff (Aff)
 import Selda (Col, FullQuery, isNull, leftJoin, lit, not_, restrict, selectFrom, (.==))
 import Selda.PG (litPG)
-import Selda.PG.Class (deleteFrom, insert1_, query, query1_)
+import Selda.PG.Class (deleteFrom, insert1_, query1_)
 import Selda.Query.Class (runSelda)
 import Server.Profile.Interface.Persistence (Handle)
 import Server.Profile.Persistence.Postgres.Type.Misc (DbOutputCols)
-import Server.Profile.Persistence.Postgres.Validation (validate)
+import Server.Profile.Persistence.Postgres.Validation (validateSingle)
 import Server.Profile.Type.Misc (InputError, Profile)
 import Server.Shared.Persistence.Postgres.Main (withConnection)
 import Server.Shared.Persistence.Type.Misc (followingTable, userTable)
@@ -30,8 +30,8 @@ mkHandle p =
 findFollowee :: Pool -> Maybe FollowerId -> FolloweeUsername -> Aff (Either InputError Profile)
 findFollowee pool followerId followeeUsername =
   withConnection pool
-    (\conn -> runSelda conn $ query $ selectFollowee followerId followeeUsername)
-    >>= validate
+    (\conn -> runSelda conn $ query1_ $ selectFollowee followerId followeeUsername)
+    >>= validateSingle
 
 selectFollowee :: forall s. Maybe FollowerId -> FolloweeUsername -> FullQuery s (DbOutputCols s)
 selectFollowee followerId followeeUsername =
@@ -60,9 +60,9 @@ insertFollower pool followerId followeeUsername =
         runSelda conn do
           { id: followeeId } <- query1_ $ selectUserId followeeUsername
           insert1_ followingTable { follower_id: followerId, followee_id: followeeId }
-          query $ selectFollowee (Just followerId) followeeUsername
+          query1_ $ selectFollowee (Just followerId) followeeUsername
     )
-    >>= validate
+    >>= validateSingle
 
 deleteFollower :: Pool -> FollowerId -> FolloweeUsername -> Aff (Either InputError Profile)
 deleteFollower pool followerId followeeUsername =
@@ -71,6 +71,6 @@ deleteFollower pool followerId followeeUsername =
         runSelda conn do
           { id: followeeId } <- query1_ $ selectUserId followeeUsername
           deleteFrom followingTable (\r -> r.follower_id .== litPG followerId && r.followee_id .== litPG followeeId)
-          query $ selectFollowee (Just followerId) followeeUsername
+          query1_ $ selectFollowee (Just followerId) followeeUsername
     )
-    >>= validate
+    >>= validateSingle

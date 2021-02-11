@@ -1,7 +1,6 @@
 module Server.Article.Persistence.Postgres.Main where
 
 import Prelude
-
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..), maybe)
 import Database.PostgreSQL (Pool)

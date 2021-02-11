@@ -3,7 +3,6 @@
 module Server.User.Persistence.Postgres.Main where
 
 import Prelude
-
 import Data.Either (Either)
 import Data.Maybe (Maybe(..))
 import Data.Nullable (toMaybe)
@@ -11,13 +10,14 @@ import Database.PostgreSQL (Pool)
 import Effect.Aff (Aff)
 import Selda (Col, FullQuery, restrict, selectFrom, (.==))
 import Selda.PG (litPG)
-import Selda.PG.Class (deleteFrom, insert, query, query1_, update) as S
+import Selda.PG.Class (deleteFrom, insert1, query1_)
+import Selda.PG.Class (update) as S
 import Selda.Query.Class (runSelda)
 import Server.Shared.Persistence.Postgres.Main (crypt, cryptGenSalt, withConnection)
 import Server.Shared.Persistence.Type.Misc (userTable)
 import Server.User.Interface.Persistence (Handle)
 import Server.User.Persistence.Postgres.Type.Misc (DbOutputCols, encryptedTable)
-import Server.User.Persistence.Postgres.Validation (validate)
+import Server.User.Persistence.Postgres.Validation (validateSingle)
 import Server.User.Type.Misc (Credentials, InputError, Patch, Raw, User)
 import Shared.Type.LongString (LongString)
 import Shared.Type.Misc (Email, Password, UserId, Username)
@@ -34,8 +34,8 @@ mkHandle p =
 
 findByCredentials :: Pool -> Credentials -> Aff (Either InputError User)
 findByCredentials pool { email, password } =
-  withConnection pool (\conn -> runSelda conn $ S.query $ selectByCredentials email password)
-    >>= validate
+  withConnection pool (\conn -> runSelda conn $ query1_ $ selectByCredentials email password)
+    >>= validateSingle
 
 selectByCredentials :: forall s. Email -> Password -> FullQuery s (DbOutputCols s)
 selectByCredentials email password =
@@ -52,8 +52,8 @@ selectByUsername username =
 -- | If the username is not found, it is an input error.
 findByUsername :: Pool -> Username -> Aff (Either InputError User)
 findByUsername pool username =
-  withConnection pool (\conn -> runSelda conn $ S.query $ selectByUsername username)
-    >>= validate
+  withConnection pool (\conn -> runSelda conn $ query1_ $ selectByUsername username)
+    >>= validateSingle
 
 selectById :: forall s. UserId -> FullQuery s (DbOutputCols s)
 selectById id =
@@ -64,8 +64,8 @@ selectById id =
 -- | If the userId is not found, it is an input error.
 findById :: Pool -> UserId -> Aff (Either InputError User)
 findById pool id =
-  withConnection pool (\conn -> runSelda conn $ S.query $ selectById id)
-    >>= validate
+  withConnection pool (\conn -> runSelda conn $ query1_ $ selectById id)
+    >>= validateSingle
 
 selectPassword :: forall s. Password -> FullQuery s { password :: Col s LongString }
 selectPassword password =
@@ -78,10 +78,10 @@ insert pool r =
   withConnection pool
     ( \conn ->
         runSelda conn do
-          encrypted <- S.query1_ $ selectPassword r.password
-          S.insert userTable [ { bio: r.bio, email: r.email, image: r.image, password: encrypted.password, username: r.username } ]
+          encrypted <- query1_ $ selectPassword r.password
+          insert1 userTable { bio: r.bio, email: r.email, image: r.image, password: encrypted.password, username: r.username }
     )
-    >>= validate
+    >>= validateSingle
 
 update :: Pool -> Patch -> UserId -> Aff (Either InputError User)
 update pool p id =
@@ -114,17 +114,17 @@ update pool p id =
                       Just defined -> litPG defined
                   }
             )
-          S.query $ selectById id
+          query1_ $ selectById id
     )
-    >>= validate
+    >>= validateSingle
 
 delete :: Pool -> UserId -> Aff (Either InputError User)
 delete pool id =
   withConnection pool
     ( \conn ->
         runSelda conn do
-          user <- S.query $ selectById id
-          _ <- S.deleteFrom userTable (\r -> r.id .== litPG id)
+          user <- query1_ $ selectById id
+          _ <- deleteFrom userTable (\r -> r.id .== litPG id)
           pure user
     )
-    >>= validate
+    >>= validateSingle
