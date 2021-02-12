@@ -208,7 +208,7 @@ let additions =
           , "psci-support"
           , "options"
           ]
-          , repo = "https://github.com/jim108dev/purescript-node-jwt"
+          , repo = "https://github.com/gaku-sei/purescript-node-jwt"
           , version = "master"
         }
       }
