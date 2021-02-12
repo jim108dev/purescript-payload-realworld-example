@@ -48,4 +48,3 @@ instance constructorEnumReadForeign ::
         <> name
     where
     name = reflectSymbol (SProxy :: SProxy name)
-

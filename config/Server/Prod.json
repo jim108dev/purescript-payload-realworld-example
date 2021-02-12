@@ -2,7 +2,7 @@
     "server": {
         "port": 3000,
         "hostname": "localhost",
-        "logLevel": "Debug"
+        "logLevel": "Normal"
     },
     "persistence": {
         "hostname": "localhost",
@@ -12,7 +12,6 @@
         "impl": "Postgres"
     },
     "token": {
-        "timestamp": "2030-01-01T00:00:00Z",
         "secret": "secret"
     }
 }

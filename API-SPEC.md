@@ -211,7 +211,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Tests calls:
 
     ```sh
-    http  POST http://localhost:3000/api/users/login < test/Server/User/LoginSuccessRequest.json Origin:"http://example.com"
+    http POST http://localhost:3000/api/users/login < test/Server/User/LoginSuccessRequest.json Origin:"http://example.com"
     http POST http://localhost:3000/api/users/login < test/Server/User/LoginFail... Origin:"http://example.com"
     ```
 
@@ -254,7 +254,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Tests calls:
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" GET http://localhost:3000/api/user Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" GET http://localhost:3000/api/user Origin:"http://example.com"
 
     http --auth-type=jwt --auth="INVALID TOKEN" GET http://localhost:3000/api/user Origin:"http://example.com"
     ```
@@ -284,7 +284,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Tests calls:
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" PUT http://localhost:3000/api/user < test/Server/User/UpdateSuccessRequest.json Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" PUT http://localhost:3000/api/user < test/Server/User/UpdateSuccessRequest.json Origin:"http://example.com"
     ```
 
 ### Get Profile
@@ -298,7 +298,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls:
 
     ```sh
-    http  --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Mg.7RxL2KQqrKhnKrqrHMYDh5Iao0vQ1Ewp4KetoK-BH2o" GET http://localhost:3000/api/profiles/jim Origin:"http://example.com"
+    http  --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjJ9.qljK8m23kwkwi9meZhbt11CeYCvdd9F55_1RJWZ-ggs" GET http://localhost:3000/api/profiles/jim Origin:"http://example.com"
     ```
 
 ### Follow user
@@ -314,7 +314,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls:
 
     ```sh
-    http  --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" POST http://localhost:3000/api/profiles/jim/follow Origin:"http://example.com"
+    http  --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" POST http://localhost:3000/api/profiles/jim/follow Origin:"http://example.com"
     ```
 
 ### Unfollow user
@@ -330,7 +330,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls:
 
     ```sh
-    http  --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" DELETE http://localhost:3000/api/profiles/jim/follow Origin:"http://example.com"
+    http  --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" DELETE http://localhost:3000/api/profiles/jim/follow Origin:"http://example.com"
     ```
 
 ### List Articles
@@ -385,7 +385,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls:
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" GET "http://localhost:3000/api/articles/feed?limit=100&offset=0" Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" GET "http://localhost:3000/api/articles/feed?limit=100&offset=0" Origin:"http://example.com"
     ```
 
 1. Minor Problem: The log displays two matches:
@@ -438,7 +438,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" POST "http://localhost:3000/api/articles" < test/Server/Article/CreateSuccessRequest.json Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" POST "http://localhost:3000/api/articles" < test/Server/Article/CreateSuccessRequest.json Origin:"http://example.com"
     ```
 
 ### Update Article
@@ -466,7 +466,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" PUT "http://localhost:3000/api/articles/how-to-train-your-dragon" < test/Server/Article/UpdateSuccessRequest.json Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" PUT "http://localhost:3000/api/articles/how-to-train-your-dragon" < test/Server/Article/UpdateSuccessRequest.json Origin:"http://example.com"
     ```
 
 ### Delete Article
@@ -480,7 +480,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls:
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" DELETE "http://localhost:3000/api/articles/how-to-train-your-dragon" Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" DELETE "http://localhost:3000/api/articles/how-to-train-your-dragon" Origin:"http://example.com"
     ```
 
 ### Add Comments to an Article
@@ -506,7 +506,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Tests calls:
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" POST http://localhost:3000/api/articles/how-to-train-your-dragon/comments  < test/Server/Comment/CreateSuccessRequest.json  Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" POST http://localhost:3000/api/articles/how-to-train-your-dragon/comments  < test/Server/Comment/CreateSuccessRequest.json  Origin:"http://example.com"
     ```
 
 ### Get Comments from an Article
@@ -534,7 +534,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Tests calls:
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" DELETE http://localhost:3000/api/articles/how-to-train-your-dragon/comments/3 Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" DELETE http://localhost:3000/api/articles/how-to-train-your-dragon/comments/3 Origin:"http://example.com"
     ```
 
 ### Favorite Article
@@ -550,7 +550,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls:
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" POST "http://localhost:3000/api/articles/how-to-train-your-dragon/favorite" Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" POST "http://localhost:3000/api/articles/how-to-train-your-dragon/favorite" Origin:"http://example.com"
     ```
 
 ### Unfavorite Article
@@ -566,7 +566,7 @@ If a request fails any validations, expect a 422 and errors in the following for
 1. Test calls:
 
     ```sh
-    http --auth-type=jwt --auth="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls" DELETE "http://localhost:3000/api/articles/how-to-train-your-dragon/favorite" Origin:"http://example.com"
+    http --auth-type=jwt --auth="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo" DELETE "http://localhost:3000/api/articles/how-to-train-your-dragon/favorite" Origin:"http://example.com"
     ```
 
 ### Get Tags

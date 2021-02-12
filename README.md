@@ -16,25 +16,29 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
     # This repo
     git clone https://github.com/jim108dev/purescript-payload-realworld-example.git
     cd purescript-payload-realworld-example
-    npm install pg decimal.js xhr2
+    npm install pg decimal.js xhr2 jsonwebtoken
     spago install
     spago build
     ```
 
+### Development/Test Mode
+
+Please choose if you want to run the server in development/test (Dev) mode or in production mode (Prod). *Dev* operates with fixed timestamps which is required for the unit tests to run. *Prod* operates with the current system time.
+
 1. Database Setup:
    1. Install PostgreSQL.
-   1. Set up a database called `conduit` with [sql/CreateDB.sql](./sql/CreateDB.sql). Change [config/Server/Dev.json](./config/Server/Dev.json) accordingly, if you make alterations.
-   1. Install the database function `timestamp_to_char` under [sql/Functions.sql](./sql/Functions.sql), either the production or mock version in order to run the tests.
-   1. Create tables with
+   1. `sql/CreateDB.sql`: Execute commands which set up a database called `conduit`.
+   1. `config/Server/{Dev|Prod}.json`: Change config files according to your db setup.
+   1. `sql/Functions.sql`: Execute commands which set up functions/triggers for *Prod*.
+   1. `sql/ResetTables.sql`: Activate the current timestamps by uncommenting `-- TIMESTAMP` for *Prod*. This file can be executed with:
 
     ```sh
     spago run -m Test.ResetTables
-    # or for tables with test data run the tests
-    spago run -m Test.Main
     ```
 
-1. Jwt:
-   Change the token's secret key in [config/Server/Dev.json](./config/Server/Dev.json). (In order to run the automated tests, `secret` must be kept in place.)
+1. Jwt: `config/Server/Prod.json`: Change the token's secret key for *Prod*.
+
+1. Server: `src/Server/Main.purs`: Set the configuration file to according.
 
 1. Optional: Install [HTTPie](https://httpie.io) and [httpie-jwt-auth](https://github.com/teracyhq/httpie-jwt-auth) for testing via command line.
 
@@ -53,5 +57,11 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 1. Run a frontend.
 
 ## Development
+
+1. Run the unit tests  
+
+    ```sh
+    spago run -m Test.Main
+    ```
 
 [APPROACH.md](./APPROACH.md) contains some comments about the decisions which were made.

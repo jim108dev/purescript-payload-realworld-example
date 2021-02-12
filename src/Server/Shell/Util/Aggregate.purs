@@ -12,8 +12,8 @@ import Server.Shell.Util.Token as Token
 mkHandle :: Config -> Effect Handle
 mkHandle config = do
   persistence <- case config.persistence.impl of
-    PI.Postgres -> Postgres.mkHandle config
+    PI.Postgres -> Postgres.mkHandle config.persistence
   pure
     { persistence
-    , token: Token.mkHandle config.token.secret
+    , token: Token.mkHandle config.token
     }

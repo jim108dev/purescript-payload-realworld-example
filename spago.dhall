@@ -8,12 +8,12 @@ You can edit this file as you like.
   , "console"
   , "effect"
   , "errors"
+  , "node-jwt"
   , "payload"
   , "point-free"
   , "psci-support"
   , "selda"
   , "simple-json"
-  , "simple-jwt"
   , "simple-timestamp"
   ]
 , packages = ./packages.dhall

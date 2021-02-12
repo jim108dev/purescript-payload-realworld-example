@@ -195,6 +195,21 @@ let additions =
           ]
         , repo = "https://github.com/Kamirus/purescript-selda.git"
         , version = "master"
+        },
+        node-jwt =
+        { dependencies =
+          [ "aff"
+          , "aff-promise"
+          , "console"
+          , "effect"
+          , "foreign-generic"
+          , "generics-rep"
+          , "newtype"
+          , "psci-support"
+          , "options"
+          ]
+          , repo = "https://github.com/jim108dev/purescript-node-jwt"
+          , version = "master"
         }
       }
 in      upstream

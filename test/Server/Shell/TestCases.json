@@ -65,7 +65,7 @@
         "request": {
             "path": "/api/user",
             "method": "get",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -78,7 +78,7 @@
             "path": "/api/user",
             "method": "put",
             "bodyFilename": "UpdateSuccessRequest.json",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -92,7 +92,7 @@
             "path": "/api/user",
             "method": "put",
             "bodyFilename": "UpdateBackSuccessRequest.json",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200
@@ -151,7 +151,7 @@
         "request": {
             "path": "/api/profiles/jim/follow",
             "method": "post",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -164,7 +164,7 @@
         "request": {
             "path": "/api/profiles/jake/follow",
             "method": "post",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 422,
@@ -177,7 +177,7 @@
         "request": {
             "path": "/api/profiles/jim/follow",
             "method": "delete",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -191,7 +191,7 @@
             "path": "/api/articles",
             "method": "post",
             "bodyFilename": "CreateSuccessRequest.json",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -205,7 +205,7 @@
             "path": "/api/articles",
             "method": "post",
             "bodyFilename": "CreateJimSuccessRequest.json",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Mg.7RxL2KQqrKhnKrqrHMYDh5Iao0vQ1Ewp4KetoK-BH2o"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjJ9.qljK8m23kwkwi9meZhbt11CeYCvdd9F55_1RJWZ-ggs"
         },
         "response": {
             "status": 200
@@ -253,7 +253,7 @@
         "request": {
             "path": "/api/articles/feed",
             "method": "get",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -266,7 +266,7 @@
         "request": {
             "path": "/api/profiles/jim/follow",
             "method": "post",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200
@@ -278,7 +278,7 @@
         "request": {
             "path": "/api/articles/feed",
             "method": "get",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -291,7 +291,7 @@
         "request": {
             "path": "/api/profiles/jim/follow",
             "method": "delete",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200
@@ -303,7 +303,7 @@
         "request": {
             "path": "/api/articles/alt/favorite",
             "method": "post",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200
@@ -327,7 +327,7 @@
         "request": {
             "path": "/api/articles/alt/favorite",
             "method": "delete",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200
@@ -351,7 +351,7 @@
             "path": "/api/articles/how-to-train-your-dragon",
             "method": "put",
             "bodyFilename": "UpdateSuccessRequest.json",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -365,7 +365,7 @@
             "path": "/api/articles/did-you-train-your-dragon",
             "method": "put",
             "bodyFilename": "UpdateBackSuccessRequest.json",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200
@@ -389,7 +389,7 @@
         "request": {
             "path": "/api/articles/alt",
             "method": "delete",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Mg.7RxL2KQqrKhnKrqrHMYDh5Iao0vQ1Ewp4KetoK-BH2o"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjJ9.qljK8m23kwkwi9meZhbt11CeYCvdd9F55_1RJWZ-ggs"
         },
         "response": {
             "status": 200
@@ -402,7 +402,7 @@
             "path": "/api/articles/how-to-train-your-dragon/comments",
             "method": "post",
             "bodyFilename": "CreateSuccessRequest.json",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200,
@@ -427,7 +427,7 @@
         "request": {
             "path": "/api/articles/how-to-train-your-dragon/comments/1",
             "method": "delete",
-            "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.MQ.AbcSR3DWum91KOgfKxUHm78rLs_DrrZ1CrDgpUFFzls"
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE4OTM0NTYwMDAsImV4cCI6MTg5MzQ1OTYwMCwiaWQiOjF9.JQvMz3rD-dhVLz3ooHBob5quAZHkBMAHKAShNv1-BMo"
         },
         "response": {
             "status": 200

@@ -1,6 +1,7 @@
 module Server.Shell.Type.LogLevel where
 
 import Prelude
+
 import Data.Generic.Rep (class Generic)
 import Data.Generic.Rep.Show (genericShow)
 import Server.Shared.Util.Json (enumReadForeign)
