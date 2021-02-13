@@ -13,7 +13,6 @@ You can edit this file as you like.
   , "point-free"
   , "psci-support"
   , "selda"
-  , "simple-json"
   , "simple-timestamp"
   ]
 , packages = ./packages.dhall

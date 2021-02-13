@@ -10,6 +10,6 @@ import Server.Shell.Util.Config (readOrThrow)
 main :: Effect Unit
 main =
   launchAff_ do
-    --config <- readOrThrow "./config/Server/Dev.json" 
-    config <- readOrThrow "./config/Server/Prod.json"
+    config <- readOrThrow "./config/Server/Dev.json"
+    --config <- readOrThrow "./config/Server/Prod.json"
     liftEffect do runServer config
