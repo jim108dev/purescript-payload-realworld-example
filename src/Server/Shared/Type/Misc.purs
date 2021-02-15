@@ -4,4 +4,3 @@ import Database.PostgreSQL (Pool) as PG
 
 data Pool
   = PostgresPool PG.Pool
-
