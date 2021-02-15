@@ -10,12 +10,18 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 
 1. Install repository 's software:
 
+    The current [purescript-selda](https://github.com/Kamirus/purescript-selda) does not update correctly and does not support offsets ([issue](https://github.com/Kamirus/purescript-selda/issues/54)). Please use version v0.1 until this gets resolved.
+
     1. Run:
 
     ```sh
     # This repo
     git clone https://github.com/jim108dev/purescript-payload-realworld-example.git
+    
     cd purescript-payload-realworld-example
+    # until selda issues are resolved:
+    git checkout tags/v0.1
+    
     npm install pg decimal.js xhr2 jsonwebtoken
     spago install
     spago build
