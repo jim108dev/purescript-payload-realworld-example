@@ -10,7 +10,7 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 
 1. Install repository 's software:
 
-    The current [purescript-selda](https://github.com/Kamirus/purescript-selda) does not update correctly and does not support offsets ([issue](https://github.com/Kamirus/purescript-selda/issues/54)). Please use version v0.1 until this gets resolved.
+    The current [purescript-selda](https://github.com/Kamirus/purescript-selda) does not update correctly and does not support offsets ([issue](https://github.com/Kamirus/purescript-selda/issues/54)). Please use version v0.1 until it gets resolved.
 
     1. Run:
 
@@ -44,7 +44,7 @@ Please choose if you want to run the server in development/test (Dev) mode or in
 
 1. Jwt: `config/Server/Prod.json`: Change the token's secret key for *Prod*.
 
-1. Server: `src/Server/Main.purs`: Set the configuration file to according.
+1. Server: `src/Server/Main.purs`: Set the configuration file accordingly.
 
 1. Optional: Install [HTTPie](https://httpie.io) and [httpie-jwt-auth](https://github.com/teracyhq/httpie-jwt-auth) for testing via command line.
 
