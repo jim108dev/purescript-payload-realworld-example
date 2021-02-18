@@ -54,8 +54,8 @@ This file contains some comments about the decisions which were made.
    1. As of the time of writing, the `offset` clause was not implemented. (See [issue](https://github.com/Kamirus/purescript-selda/issues/50))
 1. PureScript Payload:
    1. The `Failure` type did not fit for CORS, because it requires a custom header with every request.
-   1. Payload does not output validation errors. In order to see them, Payload was patched. (Compare <https://github.com/hoodunit/purescript-payload/compare/master...jim108dev:master>)
-   1. Payload did not support post requests with an empty body. This was also patched.
+   1. Payload does not output validation errors. In order to see them, Payload was patched. (Compare <https://github.com/hoodunit/purescript-payload/compare/master...jim108dev:master>)  (See [issue](https://github.com/hoodunit/purescript-payload/issues/13))
+   1. Payload did not support post requests with an empty body. This was also patched. (See [issue](https://github.com/hoodunit/purescript-payload/issues/19))
 1. Validation:
    1. [purescript-simple-json](https://github.com/justinwoo/purescript-simple-json) is used for JSON encoding/decoding because it doesn't require to specify the order of fields. Because the error field is dynamic the error structure is rendered with simple string concatenation (see [src/Server/Shared/Api/Main.purs](./src/Server/Shared/Api/Main.purs)). This could be improved.
    1. Strings are represented by:
