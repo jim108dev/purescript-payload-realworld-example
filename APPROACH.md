@@ -64,7 +64,7 @@ This file contains some comments about the decisions which were made.
       1. `ShortString`: Between 1 and 50 characters. The database type is unrestricted (`TEXT`).
    1. In order to safe on boilerplate code, all simple types like `UserId` are coded with `type` instead of `newtype`.
 1. Security:
-   1. [purescript-simple-jwt](https://github.com/oreshinya/purescript-simple-jwt) is used for token encoding/decoding. Only a secret key and the userId are used. There is no token expiration date. This could be improved.
+   1. [purescript-node-jwt](https://github.com/gaku-sei/purescript-node-jwt) is used for token encoding/decoding. Only userId is encoded used. The expiration time is set to 1 hour.
 1. Tests:
    1. Setting `origin` in the tests was not possible (Error message: `Refused to set unsafe header "origin"`). I had to mock the function.
    1. The test case request and response bodies can be found under `test/Server/<domain>/<file>`. This way, they can be used via *HTTPie* and with automated testing.
