@@ -43,7 +43,7 @@ This file contains some comments about the decisions which were made.
           1. The namespace for aggregating two or more handles is called `Aggregate`.
        1. The source code is written for qualified import, which is also mentioned at [(Van der Jeugt, 2018)](https://jaspervdj.be/posts/2018-03-08-handle-pattern.html).
           1. Actual Qualifiers like `import ... as Payload` should be used sparingly because they can't be created automatically by the *PureScript VS Code IDE*. Also the names are arbitrary.
-       1. The expression order in a code line should from right to left.
+       1. The expression order in a code line should be from right to left.
        1. If the order of parameters, arrays, records, etc. is are arbitrary it should be ordered alphabetically in the source code.
 
 ## Comments
