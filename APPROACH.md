@@ -50,8 +50,8 @@ This file contains some comments about the decisions which were made.
 
 1. PostgreSQL:
    1. In order to create type-safe sql queries [purescript-selda](https://github.com/Kamirus/purescript-selda) was used.
-   1. As of the time of writing, there was a bug in the update functionality. (See [Issue](https://github.com/Kamirus/purescript-selda/issues/42)) This is causing the update tests to fail.
-   1. As of the time of writing, the `offset` clause was not implemented. (See [Issue](https://github.com/Kamirus/purescript-selda/issues/50))
+   1. As of the time of writing, there was a bug in the update functionality. (See [issue](https://github.com/Kamirus/purescript-selda/issues/42)) This is causing the update tests to fail.
+   1. As of the time of writing, the `offset` clause was not implemented. (See [issue](https://github.com/Kamirus/purescript-selda/issues/50))
 1. PureScript Payload:
    1. The `Failure` type did not fit for CORS, because it requires a custom header with every request.
    1. Payload does not output validation errors. In order to see them, Payload was patched. (Compare <https://github.com/hoodunit/purescript-payload/compare/master...jim108dev:master>)
@@ -69,4 +69,4 @@ This file contains some comments about the decisions which were made.
    1. Setting `origin` in the tests was not possible (Error message: `Refused to set unsafe header "origin"`). I had to mock the function.
    1. The test case request and response bodies can be found under `test/Server/<domain>/<file>`. This way, they can be used via *HTTPie* and with automated testing.
 1. Frontend:
-   1. [purescript-halogen-realword](https://github.com/thomashoneyman/purescript-halogen-realworld) did not work for update user and post comments. See <https://github.com/thomashoneyman/purescript-halogen-realworld/issues/78>.
+   1. [purescript-halogen-realword](https://github.com/thomashoneyman/purescript-halogen-realworld) did not work for update user and post comments. See ([issue](https://github.com/thomashoneyman/purescript-halogen-realworld/issues/78)).
