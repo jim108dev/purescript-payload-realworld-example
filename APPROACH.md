@@ -48,7 +48,7 @@ This file contains some comments about the decisions which were made.
 
 ## Comments
 
-1. Postgres:
+1. PostgreSQL:
    1. In order to create type-safe sql queries [purescript-selda](https://github.com/Kamirus/purescript-selda) was used.
    1. As of the time of writing, there was a bug in the update functionality. (See [Issue](https://github.com/Kamirus/purescript-selda/issues/42)) This is causing the update tests to fail.
    1. As of the time of writing, the `offset` clause was not implemented. (See [Issue](https://github.com/Kamirus/purescript-selda/issues/50))
