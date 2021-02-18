@@ -29,7 +29,7 @@ This is a learning project in order to set up a REST API with [PureScript Payloa
 
 ### Development/Test Mode
 
-Please choose if you want to run the server in development/test (Dev) mode or in production mode (Prod). *Dev* operates with fixed timestamps which is required for the unit tests to run. *Prod* operates with the current system time.
+Please choose if you want to run the server in development/test (Dev) mode or in production mode (Prod). *Dev* operates with fixed timestamps which is required for the automated tests to run. *Prod* operates with the current system time.
 
 1. Database Setup:
    1. Install PostgreSQL.
