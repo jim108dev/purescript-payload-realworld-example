@@ -69,4 +69,4 @@ This file contains some comments about the decisions which were made.
    1. Setting `origin` in the tests was not possible (Error message: `Refused to set unsafe header "origin"`). I had to mock the function.
    1. The test case request and response bodies can be found under `test/Server/<domain>/<file>`. This way, they can be used via *HTTPie* and with automated testing.
 1. Frontend:
-   1. [purescript-halogen-realword](https://github.com/thomashoneyman/purescript-halogen-realworld) did not work for update user and post comments. (See [issue](https://github.com/thomashoneyman/purescript-halogen-realworld/issues/78)).
+   1. [purescript-halogen-realword](https://github.com/thomashoneyman/purescript-halogen-realworld) did not work for update user and post comments. (See [issue](https://github.com/thomashoneyman/purescript-halogen-realworld/issues/78))
