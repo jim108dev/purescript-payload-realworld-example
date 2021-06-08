@@ -1,15 +1,14 @@
 module Server.User.Api.Type.UpdateDto where
 
 import Prelude
-
 import Data.Bifunctor (lmap)
 import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Eq (genericEq)
-import Data.Generic.Rep.Show (genericShow)
 import Payload.Server.DecodeBody (class DecodeBody)
 import Server.Shared.Api.Main (renderJsonErrors)
 import Server.User.Type.Misc (Patch)
 import Simple.JSON as SJ
+import Data.Show.Generic (genericShow)
+import Data.Eq.Generic (genericEq)
 
 newtype UpdateDto
   = UpdateDto { user :: Patch }
@@ -30,6 +29,7 @@ instance encodeUpdateDto :: Encode UpdateDto where
   encode = genericEncode $ defaultOptions { unwrapSingleConstructors = true }
 -}
 derive newtype instance readForeignUpdateDto :: SJ.ReadForeign UpdateDto
+
 derive newtype instance writeForeignUpdateDto :: SJ.WriteForeign UpdateDto
 
 instance decodeBodyUpdateDto :: SJ.ReadForeign UpdateDto => DecodeBody UpdateDto where

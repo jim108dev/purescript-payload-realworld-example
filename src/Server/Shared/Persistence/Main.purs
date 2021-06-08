@@ -1,20 +1,21 @@
 module Server.Shared.Persistence.Postgres.Main where
 
 import Prelude
+
 import Control.Monad.Error.Class (throwError)
 import Data.Either (Either(..))
 import Database.PostgreSQL as PG
 import Effect.Aff (Aff, error)
 import Effect.Class (class MonadEffect)
 import Effect.Class.Console (log)
-import Global.Unsafe (unsafeStringify)
 import Selda (Col(..), FullQuery, Table, showQuery, showUpdate)
 import Selda.Col (class GetCols, showCol)
 import Selda.Expr (Expr(..))
 import Selda.PG (litPG, showPG)
+import Selda.Query.PrettyPrint (dodoPrint)
 import Selda.Query.ShowStatement (ppQuery)
 import Selda.Query.Utils (class TableToColsWithoutAlias)
-import Text.Pretty (render)
+import Simple.JSON as JSON
 
 withConnection :: forall a. PG.Pool -> (PG.Connection -> Aff a) -> Aff a
 withConnection pool f =
@@ -49,7 +50,7 @@ toArrayTextArray :: forall a i s. GetCols i => FullQuery s (Record i) → Col s 
 toArrayTextArray q =
   Col
     $ Any do
-        s <- render 0 <$> ppQuery q
+        s <- dodoPrint <$> ppQuery q
         pure $ "ARRAY (" <> s <> ")::TEXT[]"
 
 unnest :: forall s a. Col s a -> Col s a
@@ -63,7 +64,7 @@ subQuery :: forall a s. FullQuery s { value :: Col s a } → Col s a
 subQuery q =
   Col
     $ Any do
-        s <- render 0 <$> ppQuery q
+        s <- dodoPrint <$> ppQuery q
         pure $ "(" <> s <> ")"
 
 any :: forall a s. Col s (Array a) -> Col s a
@@ -78,7 +79,7 @@ logQuery q = do
   let
     { strQuery, params } = showPG $ showQuery q
   log strQuery
-  log $ unsafeStringify params
+  log $ JSON.unsafeStringify params
   log ""
 
 logUpdate ∷
@@ -91,5 +92,5 @@ logUpdate table pred up = do
   let
     { strQuery, params } = showPG $ showUpdate table pred up
   log strQuery
-  log $ unsafeStringify params
+  log $ JSON.unsafeStringify params
   log ""

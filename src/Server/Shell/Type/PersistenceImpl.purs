@@ -3,7 +3,7 @@ module Server.Shell.Type.PersistenceImpl where
 import Prelude
 
 import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Show (genericShow)
+import Data.Show.Generic (genericShow)
 import Server.Shared.Util.Json (enumReadForeign)
 import Simple.JSON as JSON
 
@@ -17,4 +17,3 @@ instance persistenceImplReadForeign :: JSON.ReadForeign PersistenceImpl where
 
 instance persistenceImplShow :: Show PersistenceImpl where
   show = genericShow
-

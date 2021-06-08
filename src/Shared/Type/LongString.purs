@@ -1,11 +1,11 @@
-module Shared.Type.LongString (fromString, unsafeFromString, toString, LongString) where
+module Shared.Type.LongString (fromString, toString, LongString) where
 
 import Prelude
 import Control.Monad.Except (except, runExcept)
 import Data.Bifunctor (lmap)
-import Data.Either (Either(..), fromRight)
+import Data.Either (Either(..))
 import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Show (genericShow)
+import Data.Show.Generic (genericShow)
 import Data.String (length, toLower)
 import Database.PostgreSQL (class FromSQLValue, class ToSQLValue)
 import Foreign (F, Foreign, ForeignError(..), unsafeToForeign)
@@ -23,14 +23,15 @@ fromString s =
     len = length s
   in
     case unit of
-      _ | len == 0 -> Left "can't be empty"
-      _ | len > 1000 -> Left "can't be longer than 1000 characters"
+      _
+        | len == 0 -> Left "can't be empty"
+      _
+        | len > 1000 -> Left "can't be longer than 1000 characters"
       _ -> Right (LongString s)
 
 -- | A partial version of `fromString`.
-unsafeFromString :: Partial => String -> LongString
-unsafeFromString = fromRight <<< fromString
-
+-- unsafeFromString :: Partial => String -> LongString
+-- unsafeFromString = fromRight <<< fromString
 toString :: LongString -> String
 toString (LongString s) = s
 

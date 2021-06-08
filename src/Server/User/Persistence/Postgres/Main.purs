@@ -3,6 +3,7 @@
 module Server.User.Persistence.Postgres.Main where
 
 import Prelude
+
 import Data.Either (Either)
 import Data.Maybe (Maybe(..))
 import Data.Nullable (toMaybe)
@@ -10,11 +11,12 @@ import Database.PostgreSQL (Pool)
 import Effect.Aff (Aff)
 import Selda (Col, FullQuery, restrict, selectFrom, (.==))
 import Selda.PG (litPG)
-import Selda.PG.Class (deleteFrom, insert1, query1_)
+import Selda.PG.Class (deleteFrom, insert1, query1)
 import Selda.PG.Class (update) as S
 import Selda.Query.Class (runSelda)
 import Server.Shared.Persistence.Postgres.Main (crypt, cryptGenSalt, withConnection)
 import Server.Shared.Persistence.Type.Misc (userTable)
+import Server.Shared.Util.Selda (query1_)
 import Server.User.Interface.Persistence (Handle)
 import Server.User.Persistence.Postgres.Type.Misc (DbOutputCols, encryptedTable)
 import Server.User.Persistence.Postgres.Validation (validateSingle)

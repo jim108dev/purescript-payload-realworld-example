@@ -1,6 +1,7 @@
 module Server.Comment.Persistence.Postgres.Main where
 
 import Prelude
+
 import Control.Monad.Except (throwError)
 import Data.Either (Either(..), either)
 import Data.Maybe (Maybe(..), maybe)
@@ -9,7 +10,7 @@ import Effect.Aff (Aff)
 import Effect.Exception (error)
 import Selda (Col, FullQuery, innerJoin, isNull, leftJoin, lit, not_, restrict, selectFrom, (.==))
 import Selda.PG (litPG)
-import Selda.PG.Class (deleteFrom, insert1, query, query1_)
+import Selda.PG.Class (deleteFrom, insert1, query)
 import Selda.Query.Class (runSelda)
 import Server.Comment.Interface.Persistence (Handle)
 import Server.Comment.Persistence.Postgres.Type.Misc (DbOutputCols)
@@ -17,6 +18,7 @@ import Server.Comment.Persistence.Postgres.Validation (validateSearch, validateI
 import Server.Comment.Type.Misc (Comment, InputError, Raw)
 import Server.Shared.Persistence.Postgres.Main (withConnection)
 import Server.Shared.Persistence.Type.Misc (articleTable, commentTable, followingTable, userTable)
+import Server.Shared.Util.Selda (query1_)
 import Shared.Type.Misc (ArticleId, CommentId, Slug, UserId)
 
 mkHandle :: Pool -> Handle

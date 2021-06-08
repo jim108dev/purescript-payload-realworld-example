@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "decimal.js": "^10.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.6.0",
+    "xhr2": "^0.2.1"
+  }
+}

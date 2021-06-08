@@ -4,13 +4,6 @@ Welcome to your new Dhall package-set!
 Below are instructions for how to edit this file for most use
 cases, so that you don't need to know Dhall to use it.
 
-## Warning: Don't Move This Top-Level Comment!
-
-Due to how `dhall format` currently works, this comment's
-instructions cannot appear near corresponding sections below
-because `dhall format` will delete the comment. However,
-it will not delete a top-level comment like this one.
-
 ## Use Cases
 
 Most will want to do one or both of these options:
@@ -49,6 +42,7 @@ in  upstream
   with halogen.repo = "https://example.com/path/to/git/repo.git"
 
   with halogen-vdom.version = "v4.0.0"
+  with halogen-vdom.dependencies = [ "extra-dependency" ] # halogen-vdom.dependencies
 -------------------------------
 
 ### Additions
@@ -104,24 +98,20 @@ in  upstream
       }
 -------------------------------
 -}
-
 let upstream =
-      https://github.com/purescript/package-sets/releases/download/psc-0.13.8-20210118/packages.dhall sha256:a59c5c93a68d5d066f3815a89f398bcf00e130a51cb185b2da29b20e2d8ae115
+      https://github.com/purescript/package-sets/releases/download/psc-0.14.1-20210516/packages.dhall sha256:f5e978371d4cdc4b916add9011021509c8d869f4c3f6d0d2694c0e03a85046c8
 
-let additions =
-      { payload =
+in  upstream
+      with payload =
         { dependencies =
-          [ "aff"
+        [ "aff"
           , "affjax"
           , "console"
-          , "debug"
           , "effect"
-          , "foreign-generic"
           , "node-fs"
           , "node-fs-aff"
           , "node-http"
           , "prelude"
-          , "psci-support"
           , "record"
           , "simple-json"
           , "stringutils"
@@ -130,87 +120,195 @@ let additions =
           ]
         , repo = "https://github.com/jim108dev/purescript-payload.git"
         , version = "master"
-        },
-        postgresql-client =
+        }
+    with postgresql-client =
+      { dependencies =
+        [ "aff"
+        , "argonaut"
+        , "arrays"
+        , "assert"
+        , "bifunctors"
+        , "bytestrings"
+        , "datetime"
+        , "decimals"
+        , "dotenv"
+        , "effect"
+        , "either"
+        , "enums"
+        , "exceptions"
+        , "foldable-traversable"
+        , "foreign"
+        , "foreign-generic"
+        , "foreign-object"
+        , "identity"
+        , "integers"
+        , "js-date"
+        , "lists"
+        , "math"
+        , "maybe"
+        , "newtype"
+        , "node-process"
+        , "nullable"
+        , "ordered-collections"
+        , "partial"
+        , "polyform"
+        , "polyform-batteries-core"
+        , "polyform-batteries-env"
+        , "prelude"
+        , "psci-support"
+        , "string-parsers"
+        , "strings"
+        , "test-unit"
+        , "transformers"
+        , "tuples"
+        , "typelevel-prelude"
+        , "validation"
+        ]
+      , repo = "https://github.com/jordanmartinez/purescript-postgresql-client.git"
+      , version = "updateTov0.14.1"
+      }
+    with polyform =
         { dependencies =
-          [ "aff"
-          , "argonaut"
-          , "arrays"
-          , "assert"
+          [ "arrays"
           , "bifunctors"
-          , "bytestrings"
-          , "console"
-          , "datetime"
-          , "decimals"
+          , "control"
           , "effect"
           , "either"
-          , "exceptions"
-          , "foldable-traversable"
-          , "foreign"
-          , "foreign-generic"
-          , "foreign-object"
-          , "js-date"
+          , "enums"
+          , "functors"
+          , "identity"
+          , "invariant"
           , "lists"
           , "maybe"
           , "newtype"
-          , "nullable"
+          , "parallel"
+          , "partial"
           , "prelude"
+          , "profunctor"
           , "psci-support"
-          , "string-parsers"
-          , "test-unit"
+          , "quickcheck"
+          , "quickcheck-laws"
+          , "record"
           , "transformers"
           , "tuples"
+          , "typelevel-prelude"
+          , "unsafe-coerce"
+          , "validation"
+          , "variant"
           ]
-        , repo = "https://github.com/rightfold/purescript-postgresql-client.git"
-        , version = "v3.0.3"
-        },
-        prettyprinter = 
-        { dependencies = 
-            [ "prelude"
-            , "unfoldable"
-            , "random"
-            , "ansi"
-            , "console"
-            ]
-        , repo =
-            "https://github.com/Kamirus/purescript-prettyprinter.git"
-        , version = 
-            "master"
-        },
-        selda =
+        , repo = "https://github.com/jordanmartinez/purescript-polyform.git"
+        , version = "updateTov0.14.1"
+        }
+      with polyform-batteries-core =
         { dependencies =
-          [ "console"
-          , "exists"
-          , "heterogeneous"
-          , "lists"
-          , "node-sqlite3"
-          , "postgresql-client"
+          [ "arrays"
+          , "decimals"
+          , "effect"
+          , "enums"
+          , "integers"
+          , "lazy"
+          , "maybe"
+          , "numbers"
+          , "partial"
+          , "polyform"
           , "prelude"
-          , "simple-json"
+          , "psci-support"
+          , "quickcheck"
           , "strings"
           , "test-unit"
-          , "transformers"
+          , "typelevel-prelude"
+          , "validation"
           , "variant"
-          , "prettyprinter"
           ]
+        , repo = "https://github.com/jordanmartinez/purescript-polyform-validators.git"
+        , version = "updateTov0.14.1"
+        }
+      with polyform-batteries-env =
+        { dependencies =
+          [ "arrays"
+          , "identity"
+          , "maybe"
+          , "ordered-collections"
+          , "polyform"
+          , "polyform-batteries-core"
+          , "prelude"
+          , "psci-support"
+          , "typelevel-prelude"
+          ]
+        , repo = "https://github.com/jordanmartinez/batteries-env.git"
+        , version = "updateTov0.14.1"
+        }
+      with selda =
+        { dependencies =
+        [ "aff"
+        , "arrays"
+        , "bifunctors"
+        , "console"
+        , "datetime"
+        , "dodo-printer"
+        , "dotenv"
+        , "effect"
+        , "either"
+        , "enums"
+        , "exceptions"
+        , "exists"
+        , "foldable-traversable"
+        , "foreign"
+        , "foreign-object"
+        , "heterogeneous"
+        , "leibniz"
+        , "lists"
+        , "maybe"
+        , "newtype"
+        , "node-process"
+        , "node-sqlite3"
+        , "ordered-collections"
+        , "partial"
+        , "polyform"
+        , "polyform-batteries-core"
+        , "polyform-batteries-env"
+        , "postgresql-client"
+        , "prelude"
+        , "record"
+        , "simple-json"
+        , "strings"
+        , "test-unit"
+        , "transformers"
+        , "tuples"
+        , "typelevel-prelude"
+        , "unsafe-coerce"
+        , "validation"
+        , "variant"
+        ]
         , repo = "https://github.com/Kamirus/purescript-selda.git"
         , version = "master"
-        },
-        node-jwt =
+        }
+      with node-jwt =
         { dependencies =
           [ "aff"
           , "aff-promise"
           , "console"
           , "effect"
           , "foreign-generic"
-          , "generics-rep"
           , "newtype"
           , "psci-support"
           , "options"
           ]
-          , repo = "https://github.com/gaku-sei/purescript-node-jwt"
-          , version = "master"
+        , repo = "https://github.com/jim108dev/purescript-node-jwt"
+        , version = "master"
         }
-      }
-in      upstream
-    //  additions
+      with simple-timestamp = 
+        { dependencies =
+        [ "console"
+        , "datetime"
+        , "effect"
+        , "foreign"
+        , "formatters"
+        , "prelude"
+        , "psci-support"
+        , "simple-json"
+        , "spec"
+        ]
+        , repo = "https://github.com/jim108dev/purescript-simple-timestamp"
+        , version = "master"
+        }

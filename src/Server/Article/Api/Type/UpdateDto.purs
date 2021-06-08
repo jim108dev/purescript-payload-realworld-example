@@ -1,10 +1,11 @@
 module Server.Article.Api.Type.UpdateDto where
 
 import Prelude
+
 import Data.Bifunctor (lmap)
+import Data.Eq.Generic (genericEq)
 import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Eq (genericEq)
-import Data.Generic.Rep.Show (genericShow)
+import Data.Show.Generic (genericShow)
 import Payload.Server.DecodeBody (class DecodeBody)
 import Server.Article.Type.Misc (Patch)
 import Server.Shared.Api.Main (renderJsonErrors)

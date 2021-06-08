@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS "user" CASCADE;
 
 CREATE TABLE "user" (
-  id int GENERATED ALWAYS AS IDENTITY,
+  id SERIAL, -- int GENERATED ALWAYS AS IDENTITY
   bio text,
   email CITEXT NOT NULL CONSTRAINT email_unique UNIQUE,
   image text,
@@ -17,7 +17,7 @@ CREATE TABLE article (
   body text NOT NULL,
   created_at timestamp with time zone DEFAULT '2016-02-18 03:22:56', -- CURRENT_TIMESTAMP,
   description text NOT NULL,
-  id int GENERATED ALWAYS AS IDENTITY,
+  id SERIAL, -- int GENERATED ALWAYS AS IDENTITY,
   slug CITEXT NOT NULL CONSTRAINT slug_unique UNIQUE,
   tag_list CITEXT[] NOT NULL,
   title CITEXT NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE article (
 DROP TABLE IF EXISTS comment CASCADE;
 
 CREATE TABLE comment (
-  id int GENERATED ALWAYS AS IDENTITY,
+  id SERIAL, -- int GENERATED ALWAYS AS IDENTITY,
   created_at timestamp with time zone DEFAULT '2016-02-18 03:22:56', --CURRENT_TIMESTAMP,
   updated_at timestamp with time zone DEFAULT '2016-02-18 03:22:56', --CURRENT_TIMESTAMP,
   body text NOT NULL,

@@ -1,6 +1,7 @@
 module Server.Shell.Persistence.Postgres.Main where
 
 import Prelude
+
 import Data.Maybe (Maybe(..))
 import Database.PostgreSQL as PG
 import Effect (Effect)
@@ -14,11 +15,10 @@ mkHandle config = do
   pure { pool: PostgresPool pool }
 
 createPool :: PersistenceConfig -> Effect PG.Pool
-createPool c = PG.newPool pgConfig
+createPool c = PG.new pgConfig
   where
-  pgConfig :: PG.PoolConfiguration
   pgConfig =
-    (PG.defaultPoolConfiguration c.database)
+    (PG.defaultConfiguration c.database)
       { host = Just c.hostname
       , user = Just c.user
       , port = Just 5432

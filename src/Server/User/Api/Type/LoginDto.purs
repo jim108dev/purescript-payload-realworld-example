@@ -1,10 +1,11 @@
 module Server.User.Api.Type.LoginDto where
 
 import Prelude
+
 import Data.Bifunctor (lmap)
+import Data.Eq.Generic (genericEq)
 import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Eq (genericEq)
-import Data.Generic.Rep.Show (genericShow)
+import Data.Show.Generic (genericShow)
 import Foreign.Class (class Decode, class Encode)
 import Foreign.Generic (defaultOptions, genericDecode, genericEncode)
 import Payload.Server.DecodeBody (class DecodeBody)

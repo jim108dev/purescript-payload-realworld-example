@@ -1,14 +1,13 @@
 module Shared.Type.LowercaseString (fromString, LowercaseString) where
 
 import Prelude
-
 import Control.Monad.Except (except, runExcept)
 import Data.Bifunctor (lmap)
 import Data.Either (Either(..), either, fromRight)
+import Data.Eq.Generic (genericEq)
 import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Eq (genericEq)
-import Data.Generic.Rep.Show (genericShow)
 import Data.Maybe (Maybe(..))
+import Data.Show.Generic (genericShow)
 import Data.String (Pattern(..), Replacement(..), length, replaceAll, toLower, trim)
 import Data.String.Regex (regex, replace)
 import Data.String.Regex.Flags (global)
@@ -34,8 +33,10 @@ fromString s =
     len = length i
   in
     case unit of
-      _ | len == 0 -> Left "can't be empty"
-      _ | len > 50 -> Left "can't be longer than 50 characters"
+      _
+        | len == 0 -> Left "can't be empty"
+      _
+        | len > 50 -> Left "can't be longer than 50 characters"
       _ -> Right $ LowercaseString i
 
 mkIdentifier :: String -> String
@@ -48,9 +49,8 @@ mkIdentifier =
   theRegex = regex "[^ a-z0-9_.:-]" global # either unsafeCrashWith identity
 
 -- | A partial version of `fromString`.
-unsafeFromString :: Partial => String -> LowercaseString
-unsafeFromString = fromRight <<< fromString
-
+-- unsafeFromString :: Partial => String -> LowercaseString
+-- unsafeFromString = fromRight <<< fromString
 toString :: LowercaseString -> String
 toString (LowercaseString s) = s
 

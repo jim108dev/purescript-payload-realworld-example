@@ -1,12 +1,13 @@
 module Shared.Type.ShortString where
 
 import Prelude
+
 import Control.Monad.Except (except, runExcept)
 import Data.Bifunctor (lmap)
 import Data.Either (Either(..), fromRight)
 import Data.Generic.Rep (class Generic)
-import Data.Generic.Rep.Show (genericShow)
 import Data.Maybe (Maybe(..))
+import Data.Show.Generic (genericShow)
 import Data.String (length, toLower)
 import Database.PostgreSQL (class FromSQLValue, class ToSQLValue)
 import Foreign (F, Foreign, ForeignError(..), unsafeToForeign)
@@ -27,13 +28,15 @@ fromString s =
     len = length s
   in
     case unit of
-      _ | len == 0 -> Left "can't be empty"
-      _ | len > 50 -> Left "can't be longer than 50 characters"
+      _
+        | len == 0 -> Left "can't be empty"
+      _
+        | len > 50 -> Left "can't be longer than 50 characters"
       _ -> Right (ShortString s)
 
 -- | A partial version of `fromString`.
-unsafeFromString :: Partial => String -> ShortString
-unsafeFromString = fromRight <<< fromString
+-- unsafeFromString :: Partial => String -> ShortString
+-- unsafeFromString = fromRight <<< fromString
 
 toString :: ShortString -> String
 toString (ShortString s) = s

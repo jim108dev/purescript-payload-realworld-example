@@ -10,8 +10,15 @@ type RawTemplate col
     , title :: col Title
     )
 
+--type Raw
+--  = { | RawTemplate Identity }
+-- not possible because of https://github.com/purescript/purescript/issues/4105
 type Raw
-  = { | RawTemplate Identity }
+  = { body :: Body
+    , description :: Description
+    , tagList :: Array Tag
+    , title :: Title
+    }
 
 type Template col
   = ( author :: { | AuthorTemplate col }

@@ -41,11 +41,11 @@
         "request": {
             "path": "/api/users/login",
             "method": "post",
-            "bodyFilename": "LoginFail422EmptyFieldRequest.json"
+            "bodyFilename": "LoginFail400EmptyFieldRequest.json"
         },
         "response": {
-            "status": 422,
-            "bodyFilename": "LoginFail422EmptyFieldResponse.json"
+            "status": 400,
+            "bodyFilename": "LoginFail400EmptyFieldResponse.json"
         }
     },
     {
@@ -53,11 +53,11 @@
         "request": {
             "path": "/api/users/login",
             "method": "post",
-            "bodyFilename": "LoginFail422MissingFieldRequest.json"
+            "bodyFilename": "LoginFail400MissingFieldRequest.json"
         },
         "response": {
-            "status": 422,
-            "bodyFilename": "LoginFail422MissingFieldResponse.json"
+            "status": 400,
+            "bodyFilename": "LoginFail400MissingFieldResponse.json"
         }
     },
     {

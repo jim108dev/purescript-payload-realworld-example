@@ -50,12 +50,11 @@ This file contains some comments about the decisions which were made.
 
 1. PostgreSQL:
    1. In order to create type-safe sql queries [purescript-selda](https://github.com/Kamirus/purescript-selda) was used.
-   1. As of the time of writing, there was a bug in the update functionality. (See [issue](https://github.com/Kamirus/purescript-selda/issues/42)) This is causing the update tests to fail.
-   1. As of the time of writing, the `offset` clause was not implemented. (See [issue](https://github.com/Kamirus/purescript-selda/issues/50))
+   1. As of the time of writing, there was a bug in the update functionality with `GENERATED ALWAYS AS IDENTITY` therefore `SERIAL` was used. (See [issue](https://github.com/Kamirus/purescript-selda/issues/42)).
+   1. As of the time of writing, there was a bug in PureScript with type synonyms therefore code was repeated. (See [issue](https://github.com/purescript/purescript/issues/4105), search for `4105` in the code).
 1. PureScript Payload:
    1. The `Failure` type did not fit for CORS, because it requires a custom header with every request.
    1. Payload does not output validation errors. In order to see them, Payload was patched. (Compare <https://github.com/hoodunit/purescript-payload/compare/master...jim108dev:master>)  (See [issue](https://github.com/hoodunit/purescript-payload/issues/13))
-   1. Payload did not support post requests with an empty body. This was also patched. (See [issue](https://github.com/hoodunit/purescript-payload/issues/19))
 1. Validation:
    1. [purescript-simple-json](https://github.com/justinwoo/purescript-simple-json) is used for JSON encoding/decoding. Because the error field is dynamic the error structure is rendered with simple string concatenation (see [src/Server/Shared/Api/Main.purs](./src/Server/Shared/Api/Main.purs)). This could be improved.
    1. Strings are represented by:
